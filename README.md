@@ -8,6 +8,9 @@ changed
 ## Team Silver Comet
 ### Roster
 Clifton Malecki
+
 Koko Afantchao - Product Owner
+
 Vladimir Maximov
+
 John Foster - Srum Master
