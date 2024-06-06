@@ -1,16 +1,59 @@
 # Outdora
-Final Project for Emerging Software Engineering Processes at Kennesaw State University
+![FigmaMockup](/docs/images/graphic.png)
 
-GitHub Projects Kanban Board for this repository can be found [here](https://github.com/users/jtfoster2/projects/1/views/1)
+Outdora is a new dating app designed for the outdoor adventure seekers. 
+Whether you're into hiking in the forest, kayaking in the streams, rock climbing in the mountains, or just exploring new trails, 
+Outdora helps match you with other like-minded adventurers who share your passion for the great outdoors. 
+Our app goes beyond basic metrics to ensure people find a partner who truly understands your love for adventure.
 
-changed
+Note: This application is the final project for the Emerging Software Engineering Processes graduate class at Kennesaw State University, built during Summer Semester 2024
 
-## Team Silver Comet
-### Roster
-Clifton Malecki
+This project can be accessed live on the web at this link: (TBC)
 
-Koko Afantchao - Product Owner
+## Table of Contents
+- [Feature Overview](#feature-overview)
+- [Architectural Overview](#architectural-overview)
+- [Kanban Board](#project-kanban-board)
+- [Team Roster](#team-roster)
+- [Runbook](/docs/Runbook.md)
+- [Product Vision](/docs/ProductVision.md)
+- [Scrum Meeting Transcripts](/docs/scrum_transcripts)
+- [Sprint Review Recordings](/docs/sprint_reviews)
 
-Vladimir Maximov
+### Feature Overview
+Note: This is a copy from the initial project description, flesh this out as project is realized
+- The app will have a login page (single sign-on (SSO) will have extra points if implemented)—there should be a DB (e.g., PostgreSQL) handling encrypted user data.
+- Users will be able to create& delete the profile and upload photos. 
+- The app will allow users to connect their profiles to Instagram and other social media. 
+- The app will collect information about a user, including parameters related to the type of adventure, skill level, preferences, and attitude. Examples of adventures include skiing, backpacking, travel, hiking, holidate, etc. 
+- The app will have a matching engine/algorithm to effectively match users (through a swipe left and swipe right type of mechanism) with others that suit their adventure, skills, and behaviors within their selected mile range. 
+- The app will have in-app messaging to enable users to coordinate an outing or simply chat with a match (voice note, audio, and video call options will have extra points if implemented).
 
-John Foster - Srum Master
+### Architectural Overview
+[Create a diagram for this at some point?]
+Technologies used:
+- Project is primarily written in Kotlin, utilizing Sprint Boot to run the service.
+- Figma was used to mock up the UI design for the web application
+- The Single Sign On (SSO) login is implemented via OAuth2
+- Deployments are managed via GitHub Actions
+- Project is hosted on (TBD)
+
+### Project Kanban Board
+The Kanban Board for this repository is publicly hosted via GitHub Projects can be found [here](https://github.com/users/jtfoster2/projects/1/views/1)
+This Kanban Board is primarily maintained by the Product Owner, Koko Afantchao. Contact them for questions regarding backlog items.
+Stories can be modified only by the project contributors, but all items should be publicly viewable. If you can not access the board, contact John Foster for support.
+
+Definition of Ready for Kanban Stories: (TBC)
+- Title - 
+- Opening Sentences - 
+- Additional Details - 
+- Story Point Estimation - 
+
+### Team Roster
+This project was created by Team Silver Comet for Emerging Software Engineering Processes class in Summer 2024
+The professor for this class was: Reza Meimandi Parizi
+Student List:
+- Clifton Malecki - Lead Engineer
+- Koko Afantchao - Product Owner 
+- John Foster - Scrum Master 
+- Vladimir Maximov - UI Engineer
