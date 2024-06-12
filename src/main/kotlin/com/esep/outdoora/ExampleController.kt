@@ -1,4 +1,4 @@
-package com.malecki.outdoora
+package com.esep.outdoora
 
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory

@@ -1,4 +1,4 @@
-package com.malecki.outdoora
+package com.esep.outdoora
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -7,12 +7,12 @@ plugins {
 	kotlin("plugin.spring") version "1.9.24"
 }
 
-group = "com.malecki"
+group = "com.esep"
 version = "0.0.1-SNAPSHOT"
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+	toolchain {java
+		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
 

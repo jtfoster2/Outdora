@@ -1,4 +1,4 @@
-package com.malecki.outdoora;
+package com.esep.outdoora;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

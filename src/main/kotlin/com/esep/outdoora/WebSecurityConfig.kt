@@ -1,4 +1,4 @@
-package com.malecki.outdoora
+package com.esep.outdoora
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
