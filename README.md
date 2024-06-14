@@ -57,3 +57,10 @@ Student List:
 - Koko Afantchao - Product Owner 
 - John Foster - Scrum Master 
 - Vladimir Maximov - UI Engineer
+
+## How to Start The Starter Project
+- Clone this repo
+- Run the build script in the scripts folder which will
+  - build the project locally with gradlew
+  - build the docker image
+  - run the docker compose file
