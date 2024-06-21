@@ -67,6 +67,9 @@ Student List:
 - Vladimir Maximov - UI Engineer
 
 ## How to Start The Starter Project
+- Assumptions:
+  - You have docker installed.
+  - You have java home set. (for gradlew)
 - Clone this repo
 - Run the build script in the scripts folder which will
   - build the project locally with gradlew
