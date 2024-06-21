@@ -31,6 +31,7 @@ Note: This is a copy from the initial project description, flesh this out as pro
 
 ### Architectural Overview
 [Create a diagram for this at some point?]
+
 Technologies used:
 - Project is primarily written in Kotlin, utilizing Sprint Boot to run the service.
 - Figma was used to mock up the UI design for the web application
@@ -40,18 +41,25 @@ Technologies used:
 
 ### Project Kanban Board
 The Kanban Board for this repository is publicly hosted via GitHub Projects can be found [here](https://github.com/users/jtfoster2/projects/1/views/1)
+
 This Kanban Board is primarily maintained by the Product Owner, Koko Afantchao. Contact them for questions regarding backlog items.
+
 Stories can be modified only by the project contributors, but all items should be publicly viewable. If you can not access the board, contact John Foster for support.
 
-Definition of Ready for Kanban Stories: (TBC)
-- Title - 
-- Opening Sentences - 
-- Additional Details - 
-- Story Point Estimation - 
+Stories on the project board are automatically sorted by the assigned priority of the issue determined by the team during our standups or backlog meetings. 
+
+Definition of Ready for Kanban Stories:
+- Title - Stories should have a title that reflects the step or stage of the feature we are trying to fulfill.
+- Opening Sentences - Issues should open with the following template "As a Developer/User/Viewer/etc , I want to ACTION so that I can RESULT"
+- Additional Details - Any relevant information that will help complete the Acceptance Criteria should be listed in an "Additional Details" section in the issue description
+- Acceptance Criteria - All steps to complete the issue should be listed under an "Acceptance Criteria" section in a bullet point format.
+- Story Point Estimation - One story point is assumed/approximated to be one hour worth of work on the issue. A 4 point story is expected to take a quarter of the sprint to complete.
 
 ### Team Roster
 This project was created by Team Silver Comet for Emerging Software Engineering Processes class in Summer 2024
+
 The professor for this class was: Reza Meimandi Parizi
+
 Student List:
 - Clifton Malecki - Lead Engineer
 - Koko Afantchao - Product Owner 
