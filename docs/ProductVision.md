@@ -76,30 +76,36 @@ Data Privacy: User profile information, including uploaded photos, will be store
   - In the user account setting user profile information is displayed in a clear editable format.
   - When looking at the profile page there is an edit button that makes my account information editable.
   - User can't modify certain information such as (age)
-  - Clearly indicate to the user that age can only be set once.
+  - Clearly indicate to the user that age can only be set twice.
   - Updated profile information should reflect on the user's profile and other areas of the platform
 
-[//]: # (TODO - This might be too busy for one ticket. Could we split into two?)
 - As a registered user, I want to upload more than one profile photo so that I can personalize my profile and, make it more visually appealing to other users.
    #### Acceptance criteria
    - The app should allow the user to upload up to 10 pictures 
    - System will validate the uploaded picture's size and format
+  
+- As a registered user , I want to see preview and arrange my photos before submiting, so I can see how the photo look like on my profile
+   #### Acceptance criteria
    - Display the photo preview to user after photo is upload 
    - Give the option to user to arrange the picture by preference
-
-[//]: # (TODO - Prompting for the password again should get split into a second feature/ticket)
+   
 - As a registered user who no longer wants to use the app, I should be able to permanently delete my profile and all my personal data.
   #### Acceptance criteria
   - User account Setting should provide a clear option for profile and data deletion 
-  - User should be prompted with password field to confirm the deletion of their profile and data
   - After deletion user should not be able to access their profile and data
-  - Confirmation email is send to the user with link to download personal data  after successful deletion
+  - All user data should be permanently deleted from the database
 
-[//]: # (TODO - What if we preceeded this with the ability for users to flag inappropriate content?)
-- As AI supervision tools, I want to be able to review user-uploaded photos and remove inappropriate content so that I can maintain a safe and positive user experience.
+- As a registered user who is deleting this profiles, I want to get a confirmation of profile deletion  
+  #### Acceptance criteria 
+  - Confirmation email is send to the user with link to download personal data  after successful deletion
+  - User should be prompted with password field to confirm the deletion of their profile and data
+
+- As a registered user , I want to be able to flag or report inappropriate photos content so that I can maintain a safe and positive plateform .
   #### Acceptance criteria
-  - The AI tool can identify inappropriate content with a high degree of accuracy (e.g., above 90% precision and recall). 
-  - The AI tool operates efficiently to minimize delays in content review and user experience.dd
+  - User should be able to flag/report a photo from another user's profile
+  - should Have report button visible on every displayed profile photos
+  - user should have a predefinde reasons for reporting photo 
+ 
 
 
 ## Connecting Profile to Social media Account feature
@@ -126,7 +132,6 @@ The app will collect information about a user, including parameters related to t
   - User profile edit should include a section to select their preferred adventure types. 
   - User can select multiple adventure types from a predefined list.
 
-[//]: # (TODO - maybe move updates on skills to another ticket)
 - As a registered user, I want to indicate my skill level for different adventure types (e.g., beginner skier, advanced backpacker) so that I can find adventures and connect with users who match my experience.
   #### Acceptance Criteria
   - The user profile settings provide options to specify skill levels for different adventures
