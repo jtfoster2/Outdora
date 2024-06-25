@@ -13,10 +13,10 @@ import java.util.logging.LogManager
 
 @Controller
 class ExampleController {
-    @GetMapping("/")
-    fun root(model: Model): String {
-        return home(model)
-    }
+//    @GetMapping("/")
+//    fun root(model: Model): String {
+//        return home(model)
+//    }
 
     @GetMapping("/home")
     fun home(model: Model): String {
