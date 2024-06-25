@@ -2,6 +2,10 @@ package com.esep.outdoora
 
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
+import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient
+import org.springframework.security.oauth2.core.user.OAuth2User
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -13,13 +17,23 @@ import java.util.logging.LogManager
 
 @Controller
 class ExampleController {
-//    @GetMapping("/")
-//    fun root(model: Model): String {
-//        return home(model)
-//    }
+    @GetMapping("/")
+    fun root(
+        model: Model,
+        @RegisteredOAuth2AuthorizedClient authorizedClient: OAuth2AuthorizedClient,
+        @AuthenticationPrincipal oauth2User: OAuth2User
+    ): String {
+        return home(model, authorizedClient, oauth2User)
+    }
 
     @GetMapping("/home")
-    fun home(model: Model): String {
+    fun home(
+        model: Model,
+        @RegisteredOAuth2AuthorizedClient authorizedClient: OAuth2AuthorizedClient,
+        @AuthenticationPrincipal oauth2User: OAuth2User
+    ): String {
+        // See other fields with authDetails endpoint.
+        model.addAttribute("name", oauth2User.attributes.get("given_name"))
         return "home"
     }
 

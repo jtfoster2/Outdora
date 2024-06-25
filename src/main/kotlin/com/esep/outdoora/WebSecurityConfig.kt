@@ -17,24 +17,30 @@ class WebSecurityConfig {
     @Autowired
     private lateinit var clientRegistrationRepository: ClientRegistrationRepository
 
+    private val googleLogoutUri: String = "https://accounts.google.com/Logout"
+
     @Bean
-    open fun filterChain(http: HttpSecurity): SecurityFilterChain {
-        http.authorizeRequests {
-            it.anyRequest().authenticated()
-        }
-        .oauth2Login { }
-        .logout {
-            it.logoutSuccessHandler(oidcLogoutSuccessHandler())
-        }
+    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+        http
+            .authorizeHttpRequests { authorize ->
+                authorize
+                    .requestMatchers("/landing").permitAll()
+                    .anyRequest().authenticated()
+            }
+            .oauth2Login { oauth2Login ->
+
+            }
+            .logout { logout ->
+                logout
+                    .logoutSuccessUrl("/logged-out")
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .logoutSuccessHandler { request, response, authentication ->
+                        val logoutUrl = "$googleLogoutUri"
+                        response.sendRedirect(logoutUrl)
+                    }
+            }
+
         return http.build()
-    }
-
-    private fun oidcLogoutSuccessHandler(): LogoutSuccessHandler {
-        val oidcLogoutSuccessHandler = OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository)
-
-        // Sets the location that the End-User's User Agent will be redirected to
-        // after the logout has been performed at the Provider
-        oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}")
-        return oidcLogoutSuccessHandler
     }
 }
