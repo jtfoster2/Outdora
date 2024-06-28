@@ -15,7 +15,7 @@ This project can be accessed live on the web at this link: (TBC)
 - [Architectural Overview](#architectural-overview)
 - [Kanban Board](#project-kanban-board)
 - [Team Roster](#team-roster)
-- [Runbook](/docs/Runbook.md)
+- [Runbook](#how-to-start-the-starter-project)
 - [Product Vision](/docs/ProductVision.md)
 - [Scrum Meeting Transcripts](/docs/scrum_transcripts)
 - [Sprint Review Recordings](/docs/sprint_reviews)
@@ -55,6 +55,10 @@ Definition of Ready for Kanban Stories:
 - Acceptance Criteria - All steps to complete the issue should be listed under an "Acceptance Criteria" section in a bullet point format.
 - Story Point Estimation - One story point is assumed/approximated to be one hour worth of work on the issue. A 4 point story is expected to take a quarter of the sprint to complete.
 
+#### Tasking
+Tasks for each individual story/issue will be documented as checkbox items in the descriptions for tracking and completion.
+- [X] Example Checkbox for a task as it would show in a story
+
 ### Team Roster
 This project was created by Team Silver Comet for Emerging Software Engineering Processes class in Summer 2024
 
@@ -66,7 +70,13 @@ Student List:
 - John Foster - Scrum Master 
 - Vladimir Maximov - UI Engineer
 
-## How to Start The Starter Project
+### Story Point Forecasts
+
+Sprint 1 - Initial Estimate is 16 points per person over the course of the 2-week sprint.
+Sprint 2 - TBC
+Sprint 3 - TBC (Will be shorter since this sprint is 1-week only)
+
+### How to Start The Starter Project
 - Assumptions:
   - You have docker installed.
   - You have java home set. (for gradlew)
