@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<h1>Profile</h1>
+<div th:if="${!profileExists}">
+    <form action="/editProfile" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age"><br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<div th:if="${profileExists}">
+    <form action="/editProfile" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" th:value="${name}"><br>
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" th:value="${age}"><br>
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description" th:value="${description}"><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

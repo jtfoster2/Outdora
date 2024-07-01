@@ -12,22 +12,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.servlet.ModelAndView
-import java.util.logging.LogManager
 
 
 @Controller
 class ExampleController {
     @GetMapping("/")
     fun root(
-        model: Model,
-        @RegisteredOAuth2AuthorizedClient authorizedClient: OAuth2AuthorizedClient,
-        @AuthenticationPrincipal oauth2User: OAuth2User
-    ): String {
-        return home(model, authorizedClient, oauth2User)
-    }
-
-    @GetMapping("/home")
-    fun home(
         model: Model,
         @RegisteredOAuth2AuthorizedClient authorizedClient: OAuth2AuthorizedClient,
         @AuthenticationPrincipal oauth2User: OAuth2User
