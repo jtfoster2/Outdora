@@ -40,11 +40,10 @@ class ProfileController(
         return "redirect:/profile"
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/profile") // context
     fun viewProfile(
         model: Model,
         session: HttpSession,
-        principal: Principal
     ): String {
         val userId = session.getAttribute("userId") as Long
         val profile = profileRepository.findByUserId(userId = userId)
