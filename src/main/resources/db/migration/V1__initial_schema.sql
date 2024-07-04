@@ -23,3 +23,15 @@ CREATE TABLE "profile"
     description TEXT,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
+
+CREATE TABLE "activity_preferences"
+(
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    skiing BOOLEAN NOT NULL,
+    hiking BOOLEAN NOT NULL,
+    backpacking BOOLEAN NOT NULL,
+    travel BOOLEAN NOT NULL,
+    holidate BOOLEAN NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES "users" (id)
+);
