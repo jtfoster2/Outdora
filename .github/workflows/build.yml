@@ -28,10 +28,12 @@ jobs:
         run: |
          chmod +x ./gradlew
          ./gradlew bootjar
+      - name: 'Compose Docker Image'
+        shell: bash
+        run: docker build -t esep/outdoora .
       # Publish the image as a downloadable artifact in the action run
-      - name: upload archive
-        uses: actions/upload-artifact@v3
+      - name: Upload image
+        uses: ishworkh/container-image-artifact-upload@v1.1.1
         with:
-            name: 'build_image'
-            path: esep/outdoora
+          image: "esep/outdoora:latest"
       # If we build out to a production environment, add the steps below here.
