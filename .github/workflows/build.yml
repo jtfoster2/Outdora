@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
+#env:
   # Any necessary environment variables for the runner go here.
 jobs:
   build_image:
