@@ -26,8 +26,8 @@ jobs:
       - name: 'Build with Gradle'
         shell: bash
         run: |
-         chmod +x gradlew
-         gradlew build
+         chmod +x gradle
+         gradle build
       - name: 'Compose Docker Image'
         shell: bash
         run: docker build -t esep/outdoora .
