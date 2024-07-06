@@ -3,7 +3,6 @@ name: build
 on:
   push:
     branches: [ main ]
-# Could add PR builds for this later, not sure that we need it though.
   pull_request:
     branches: [ main ]
 
