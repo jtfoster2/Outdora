@@ -28,6 +28,9 @@ jobs:
         run: |
          chmod +x ./gradlew
          ./gradlew bootjar
+      - name: 'Run Unit Tests'
+        shell: bash
+        run: ./gradlew test
       - name: 'Compose Docker Image'
         shell: bash
         run: docker build -t esep/outdoora .
