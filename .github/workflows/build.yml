@@ -1,0 +1,38 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+#env:
+  # Any necessary environment variables for the runner go here.
+jobs:
+  build_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout source code'
+        uses: actions/checkout@v3
+      - name: 'Setup Java 17'
+        uses: actions/setup-java@v3
+        with:
+          distribution: oracle
+          java-version: 17
+          cache: gradle
+      - name: 'Setup Gradle'
+        uses: gradle/actions/setup-gradle@v3
+      - name: 'Build with Gradle'
+        shell: bash
+        run: |
+         chmod +x gradle
+         gradle build
+      - name: 'Compose Docker Image'
+        shell: bash
+        run: docker build -t esep/outdoora .
+      # Publish the image as a downloadable artifact in the action run
+      - name: Upload image
+        uses: ishworkh/container-image-artifact-upload@v1.1.1
+        with:
+          image: "esep/outdoora:latest"
+      # If we build out to a production environment, add the steps below here.
