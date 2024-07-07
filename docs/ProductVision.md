@@ -1,5 +1,5 @@
 # Project Vision
-Empowering passionate outdoor enthusiasts seeking compatible partners for unforgettable experiences . Outdora is web-based dating app that focuses on shared adventures matching. Unlike other dating apps,OutDora vision to connect adventure seekers and build thriving community.
+Empowering passionate outdoor enthusiasts seeking compatible partners for unforgettable experiences. Outdora is web-based dating app that focuses on shared adventures matching. Unlike other dating apps,OutDora vision to connect adventure seekers and build thriving community.
 
  ### Near vision 
 - **Core Functionality:** Launch a user-friendly web app with robust matching algorithms based on outdoor activity preferences, skill levels, and location, with  one to one  and group messaging  feature,discussion forums, event calendars for local hikes/climbs
@@ -7,7 +7,7 @@ Empowering passionate outdoor enthusiasts seeking compatible partners for unforg
 -  **Safety Features:** Implement robust safety features like emergency contact sharing, in-app messaging with location tracking (optional), and comprehensive user verification.
 
 ### Long therm  Goals 
- - **Matching Algorithm:** Develop a robust matching algorithm that goes beyond basic profiles. Integrate adventure preferences, past experiences, desired activity levels, and risk tolerance.
+ - **Matching Algorithm:** Develop a robust matching algorithm that goes beyond basic profiles. Integrate adventure preferences, experiences, desired activity levels, and risk tolerance.
  - **Partnerships:** Establish partnerships with outdoor gear companies, event organizers, or national parks to offer exclusive benefits to Outdora users
 
 
@@ -36,7 +36,7 @@ Empowering passionate outdoor enthusiasts seeking compatible partners for unforg
   - After password is created, the system send email with link to the user email address provider to confirm his email to enable login with email& password
 
 
-- As a registered user I want to reset my password, if I forget it  or after three unsuccessful login attempt so I can access again my account
+- As a registered user I want to reset my password, if I forget it  or after three unsuccessful login attempt, so I can access again my account
   ##### Acceptance Criteria 
   - The App logging page should provide a "Forgot Password" (reset password link) on the login page and also in the user profile setting 
   - when valid email address is enter and the system valid the email against registered accounts, the system send email to with a link to reset the password. 
@@ -70,7 +70,7 @@ Data Privacy: User profile information, including uploaded photos, will be store
   - User can optionally add basic information and also additional profile details beyond basic (Bio, Location, Interests, Hobbies)
   - User profile information is displayed on their profile page.
 
-[//]: # (TODO - Why not edit age or birthdate?)
+[//]:
 - As a user, I want to edit my profile information, so I can keep my profile up to date 
    #### Acceptance criteria 
   - In the user account setting user profile information is displayed in a clear editable format.
@@ -84,7 +84,7 @@ Data Privacy: User profile information, including uploaded photos, will be store
    - The app should allow the user to upload up to 10 pictures 
    - System will validate the uploaded picture's size and format
   
-- As a registered user , I want to see preview and arrange my photos before submiting, so I can see how the photo look like on my profile
+- As a registered user , I want to see preview and arrange my photos before submitting, so I can see how the photo look like on my profile
    #### Acceptance criteria
    - Display the photo preview to user after photo is upload 
    - Give the option to user to arrange the picture by preference
@@ -100,11 +100,11 @@ Data Privacy: User profile information, including uploaded photos, will be store
   - Confirmation email is send to the user with link to download personal data  after successful deletion
   - User should be prompted with password field to confirm the deletion of their profile and data
 
-- As a registered user , I want to be able to flag or report inappropriate photos content so that I can maintain a safe and positive plateform .
+- As a registered user , I want to be able to flag or report inappropriate photos content so that I can maintain a safe and positive platform .
   #### Acceptance criteria
   - User should be able to flag/report a photo from another user's profile
   - should Have report button visible on every displayed profile photos
-  - user should have a predefinde reasons for reporting photo 
+  - user should have a predefined reasons for reporting photo 
  
 
 
@@ -112,10 +112,10 @@ Data Privacy: User profile information, including uploaded photos, will be store
 The app will allow users to connect their profiles to Instagram and other social media.
    
 ### User Stories
-- As register user, I want to connect my profile to other social media plateform during profil creation or after, so That I can rapidly establish social netwok within the app
+- As register user, I want to connect my profile to other social media platform during profile creation or after, so That I can rapidly establish social network within the app
   #### Acceptance criteria
-  - The user profile information page will provides an oprion to connect to socail media accounts. 
-  - Use after selection of prefere social media , the app guides the user through the secure OAuth authorization process 
+  - The user profile information page will provide an option to connect to social media accounts. 
+  - Use after selection of preferred social media , the app guides the user through the secure OAuth authorization process 
 
 
 - As a registered user, I want to be able to manage and disconnect my connected social media accounts within the app settings. 
