@@ -1,0 +1,1 @@
+To run cucumber tests simply use `gradle cucumber` with the application up and running.
