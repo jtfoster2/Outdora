@@ -69,6 +69,7 @@ Student List:
 - Koko Afantchao - Product Owner 
 - John Foster - Scrum Master 
 - Vladimir Maximov - UI Engineer
+- Krishna Boddu - UI Engineer
 
 ### Story Point Forecasts
 
