@@ -25,7 +25,7 @@ This project can be accessed live on the web at this link: (TBC)
 - [Scrum Meeting Transcripts](/docs/scrum_transcripts)
 - [Sprint Review Recordings](/docs/sprint_reviews)
 - [Pair Programming Recordings](/docs/collaborations)
-- [Release Notes](/docs/release_notes)
+- [Release Notes](/docs/release_notes.md)
 
 ### Feature Overview
 
