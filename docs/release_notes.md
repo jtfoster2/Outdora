@@ -4,9 +4,9 @@
 
 #### Features
 
--  Basic profile creation
--  Sign on with SSO
--  Adventure type selection
+-  [Basic profile creation](https://github.com/jtfoster2/Outdora/issues/15)
+-  [Sign on with SSO](https://github.com/jtfoster2/Outdora/issues/16)
+-  [Adventure type selection]( https://github.com/jtfoster2/Outdora/issues/19)
 
 #### Bugs fixed
 
