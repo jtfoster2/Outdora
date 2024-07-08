@@ -1,0 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title> valide your code her </title>
+</head>
+<div>
+    <form action="/confirmCode" method="post">
+        <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+        <label for="code">Description:</label><br>
+        <input id="code" name="code" type="text"><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</html>

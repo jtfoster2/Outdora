@@ -1,0 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title> Enter your phone number </title>
+</head>
+<div>
+    <form action="/sendcode" method="post">
+        <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+        <label for="phone">Phone number :</label><br>
+        <input id="phone" name="phone" type="text"><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</html>
