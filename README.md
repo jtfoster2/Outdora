@@ -17,12 +17,14 @@ This project can be accessed live on the web at this link: (TBC)
 - [Team Roster](#team-roster)
 - [Runbook](#how-to-start-the-starter-project)
 - [Product Vision](/docs/ProductVision.md)
+- [Sprint Burndown Charts](/docs/burndown_charts)
 - [Scrum Meeting Transcripts](/docs/scrum_transcripts)
 - [Sprint Review Recordings](/docs/sprint_reviews)
+- [Pair Programming Recordings](/docs/collaborations)
 
 ### Feature Overview
 Note: This is a copy from the initial project description, flesh this out as project is realized
-- The app will have a login page (single sign-on (SSO) will have extra points if implemented)—there should be a DB (e.g., PostgreSQL) handling encrypted user data.
+- The app will have a login page (single sign-on (SSO) will have extra points if implemented)—there should be a DB (e.g., PostgresSQL) handling encrypted user data.
 - Users will be able to create& delete the profile and upload photos. 
 - The app will allow users to connect their profiles to Instagram and other social media. 
 - The app will collect information about a user, including parameters related to the type of adventure, skill level, preferences, and attitude. Examples of adventures include skiing, backpacking, travel, hiking, holidate, etc. 
