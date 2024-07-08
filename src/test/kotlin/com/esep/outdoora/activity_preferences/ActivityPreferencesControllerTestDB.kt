@@ -1,11 +1,7 @@
 package com.esep.outdoora.activity_preferences
 
 import com.esep.outdoora.IntegrationTest
-import com.esep.outdoora.profile.Profile
-import com.esep.outdoora.profile.ProfileController
-import com.esep.outdoora.profile.ProfileRepository
 import com.esep.outdoora.user.User
-import com.esep.outdoora.user.UserRepository
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
@@ -22,7 +18,7 @@ class ActivityPreferencesControllerTestDB(
     @Autowired val activityController: ActivityPreferencesController,
 ) : IntegrationTest() {
     @Test
-    fun `test updateProfileDetails`() {
+    fun `test updateActivityPreferences`() {
         // create the user and then activityPreferences
         val user = userRepository.save(User(email = "blah"))
         activityRepository.save(ActivityPreferences(skiing = true, backpacking = true, travel = true, hiking = true, holidate = true, user = user))
@@ -41,7 +37,7 @@ class ActivityPreferencesControllerTestDB(
     }
 
     @Test
-    fun `test viewProfile`() {
+    fun `test viewActivityPreferences`() {
         // create the user and then profile
         val user = userRepository.save(User(email = "blah"))
         activityRepository.save(ActivityPreferences(skiing = true, backpacking = true, travel = true, hiking = true, holidate = true, user = user))
