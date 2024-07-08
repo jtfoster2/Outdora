@@ -4,9 +4,9 @@
 
 #### Features
 
--[x]  Basic profile creation
--[x]  Sign on with SSO
--[x]  Adventure type selection
+-  Basic profile creation
+-  Sign on with SSO
+-  Adventure type selection
 
 #### Bugs fixed
 
