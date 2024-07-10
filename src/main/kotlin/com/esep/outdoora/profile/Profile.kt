@@ -21,6 +21,10 @@ data class Profile(
     @Column
     var description: String? = null,
 
+    @Lob
+    @Column
+    var image: ByteArray? = null,
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User
