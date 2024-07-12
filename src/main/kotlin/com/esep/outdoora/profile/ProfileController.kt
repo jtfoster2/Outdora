@@ -7,13 +7,14 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
-import java.security.Principal
+import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import kotlin.jvm.optionals.getOrNull
 
 @Controller
 class ProfileController(
-    val profileRepository: ProfileRepository,
-    val userRepository: UserRepository,
+    private val profileRepository: ProfileRepository,
+    private val userRepository: UserRepository,
+    private val profileDeletionService: ProfileDeletionService
 ) {
     @PostMapping("/editProfile")
     fun updateProfileDetails(
@@ -70,5 +71,47 @@ class ProfileController(
             model.addAttribute("description", profile.description)
         }
         return "editProfile"
+    }
+
+    @GetMapping("/deleteProfileConfirmation")
+    fun deleteProfileConfirmation(
+        model: Model,
+        session: HttpSession,
+        redirectAttributes: RedirectAttributes
+    ): String {
+        val userId = session.getAttribute("userId") as Long
+        val profile = profileRepository.findByUserId(userId = userId)
+        if (profile == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Profile not found.")
+            return "redirect:/"
+        }
+
+        profile.also {
+            model.addAttribute("name", profile.name)
+            model.addAttribute("description", profile.description)
+        }
+        return "deleteProfileConfirmation"
+    }
+
+
+    @GetMapping("/deleteProfile")
+    fun deleteProfile(
+        session: HttpSession,
+        redirectAttributes: RedirectAttributes
+    ): String {
+        val userId = session.getAttribute("userId") as Long
+        val profile = profileRepository.findByUserId(userId = userId)
+        if (profile == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Profile not found.")
+            return "redirect:/"
+        }
+
+        return if (profileDeletionService.deleteProfile(userId)) {
+            redirectAttributes.addFlashAttribute("successMessage", "Profile successfully deleted.")
+            "redirect:/"
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error occurred while deleting profile.")
+            "redirect:/"
+        }
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <title>Spring Security Example</title>
 </head>
@@ -16,5 +16,7 @@
     <p>Your description is: <span th:text="${description}">Blah</span></p>
     <a href="/editProfile">Edit Profile</a>
 </div>
+
+<p>Click <a th:href="@{/}">here</a> to main.</p>
 </body>
 </html>

@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
-    <title>Spring Security Example</title>
+    <title>Home Page</title>
+    <style>
+        .notification {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .notification-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .notification-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+    </style>
 </head>
 <body>
+<div th:if="${successMessage}" class="notification notification-success" th:text="${successMessage}"></div>
+<div th:if="${errorMessage}" class="notification notification-error" th:text="${errorMessage}"></div>
+
 <h1>Welcome!</h1>
 <p>You are successfully logged in <span style="font-weight:bold" th:text="${name}"></span></p>
 
 <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
 <p>Click <a th:href="@{/profile}">here</a> to visit your profile.</p>
 <p>Click <a th:href="@{/activityPreferences}">here</a> to visit your activity preferences.</p>
+<p>Click <a th:href="@{/deleteProfileConfirmation}">here</a> to delete user profile.</p>
+
 </body>
 </html>

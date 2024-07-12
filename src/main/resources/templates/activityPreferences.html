@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <title>Spring Security Example</title>
 </head>
@@ -13,5 +13,6 @@
 <p th:if="${preferences.travel}">You love to travel!</p><p th:if="${!preferences.travel}">You do not like to travel.</p>
 <p th:if="${preferences.holidate}">You love to holidate!</p><p th:if="${!preferences.holidate}">You do not like to holidate.</p>
 <a href="/editActivityPreferences">Edit Preferences</a>
+<p>Click <a th:href="@{/}">here</a> to main.</p>
 </body>
 </html>
