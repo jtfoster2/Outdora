@@ -10,7 +10,6 @@ import io.mockk.verify
 import jakarta.servlet.http.HttpSession
 import org.junit.jupiter.api.Test
 import org.springframework.ui.Model
-import java.security.Principal
 import java.util.*
 
 class ProfileControllerTest {
@@ -18,7 +17,8 @@ class ProfileControllerTest {
     val userRepository = mockk<UserRepository>()
     val session = mockk<HttpSession>()
 
-    val controller = ProfileController(profileRepository, userRepository)
+    val profileDeletionService = mockk<ProfileDeletionService>()
+    val controller = ProfileController(profileRepository, userRepository, profileDeletionService)
 
     @Test
     fun `Update profile details bombs if the user repository comes back null`() {
@@ -97,7 +97,8 @@ class ProfileControllerTest {
         val session = mockk<HttpSession>()
         val model = mockk<Model>(relaxed = true)
 
-        val controller = ProfileController(profileRepository, userRepository)
+        val profileDeletionService = mockk<ProfileDeletionService>()
+        val controller = ProfileController(profileRepository, userRepository, profileDeletionService)
 
         every { session.getAttribute("userId") } returns 1010L
         every { profileRepository.findByUserId(1010L) } returns null
@@ -119,7 +120,8 @@ class ProfileControllerTest {
         val session = mockk<HttpSession>()
         val model = mockk<Model>(relaxed = true)
 
-        val controller = ProfileController(profileRepository, userRepository)
+        val profileDeletionService = mockk<ProfileDeletionService>()
+        val controller = ProfileController(profileRepository, userRepository, profileDeletionService)
 
         val user = User(
             id = 1010,
@@ -154,7 +156,8 @@ class ProfileControllerTest {
         val session = mockk<HttpSession>()
         val model = mockk<Model>(relaxed = true)
 
-        val controller = ProfileController(profileRepository, userRepository)
+        val profileDeletionService = mockk<ProfileDeletionService>()
+        val controller = ProfileController(profileRepository, userRepository, profileDeletionService)
 
         every { session.getAttribute("userId") } returns 1010L
         every { profileRepository.findByUserId(1010L) } returns null
@@ -176,7 +179,8 @@ class ProfileControllerTest {
         val session = mockk<HttpSession>()
         val model = mockk<Model>(relaxed = true)
 
-        val controller = ProfileController(profileRepository, userRepository)
+        val profileDeletionService = mockk<ProfileDeletionService>()
+        val controller = ProfileController(profileRepository, userRepository, profileDeletionService)
 
         val user = User(
             id = 1010,
