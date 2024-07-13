@@ -21,6 +21,7 @@ CREATE TABLE "profile"
     name VARCHAR(255) NOT NULL,
     age INT NOT NULL,
     description TEXT,
+    image BYTEA,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
 
@@ -33,6 +34,5 @@ CREATE TABLE "activity_preferences"
     backpacking BOOLEAN NOT NULL,
     travel BOOLEAN NOT NULL,
     holidate BOOLEAN NOT NULL,
-    image BYTEA,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );

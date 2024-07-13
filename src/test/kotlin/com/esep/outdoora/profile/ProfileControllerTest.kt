@@ -10,6 +10,7 @@ import io.mockk.verify
 import jakarta.servlet.http.HttpSession
 import org.junit.jupiter.api.Test
 import org.springframework.ui.Model
+import org.springframework.web.multipart.MultipartFile
 import java.security.Principal
 import java.util.*
 
@@ -25,8 +26,10 @@ class ProfileControllerTest {
         every { session.getAttribute("userId") } returns 1010L
         every { userRepository.findById(1010L) } returns Optional.empty()
 
+        // create a mock multipart file
+        val multipartFile = mockk<MultipartFile>()
         shouldThrow<Exception> {
-            controller.updateProfileDetails("newName", 30, "new description", session)
+            controller.updateProfileDetails("newName", 30, "new description", multipartFile, session)
         }
 
         verify(exactly = 0) { profileRepository.save(any()) }
@@ -52,7 +55,10 @@ class ProfileControllerTest {
         every { userRepository.findById(1010L) } returns Optional.of(user)
         every { profileRepository.save(any()) } answers { firstArg() }
 
-        controller.updateProfileDetails("newName", 30, "new description", session)
+        val multipartFile = mockk<MultipartFile>()
+        every { multipartFile.bytes } returns "image".toByteArray()
+
+        controller.updateProfileDetails("newName", 30, "new description", multipartFile, session)
 
         val profileCaptor = mutableListOf<Profile>()
         verify { profileRepository.save(capture(profileCaptor)) }
@@ -77,7 +83,9 @@ class ProfileControllerTest {
         every { userRepository.findById(1010L) } returns Optional.of(user)
         every { profileRepository.save(any()) } answers { firstArg() }
 
-        controller.updateProfileDetails("newName", 30, "new description", session)
+        val multipartFile = mockk<MultipartFile>()
+        every { multipartFile.bytes } returns "image".toByteArray()
+        controller.updateProfileDetails("newName", 30, "new description", multipartFile, session)
 
         val profileCaptor: MutableList<Profile> = mutableListOf()
         verify { profileRepository.save(capture(profileCaptor)) }
@@ -130,6 +138,7 @@ class ProfileControllerTest {
             name = "oldName",
             age = 25,
             description = "old description",
+            image = "image".toByteArray(),
             user = user
         )
 

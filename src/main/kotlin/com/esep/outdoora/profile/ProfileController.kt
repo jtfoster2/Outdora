@@ -59,8 +59,9 @@ class ProfileController(
             model.addAttribute("age", it.age)
             model.addAttribute("description", it.description)
             // Use java.util.Base64 for encoding
-            val imageBase64 = Base64.getEncoder().encodeToString(it.image)
-            model.addAttribute("imageBase64", imageBase64)
+            it.image
+                ?.let { image -> Base64.getEncoder().encodeToString(image) }
+                ?.also { imageBase64 -> model.addAttribute("imageBase64", imageBase64) }
         }
         return "profile"
     }
