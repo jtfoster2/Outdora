@@ -24,14 +24,21 @@ CREATE TABLE "profile"
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
 
+CREATE TABLE "activities"
+(
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    adventure_name VARCHAR(255) NOT NULL,
+    skill_level VARCHAR(255) NOT NULL,
+    attitude VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES "users" (id)
+)
+
 CREATE TABLE "activity_preferences"
 (
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
-    skiing BOOLEAN NOT NULL,
-    hiking BOOLEAN NOT NULL,
-    backpacking BOOLEAN NOT NULL,
-    travel BOOLEAN NOT NULL,
-    holidate BOOLEAN NOT NULL,
+    activity_id BIGINT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
+    FOREIGN KEY (activity_id) REFERENCES "activity" (id)
 );
