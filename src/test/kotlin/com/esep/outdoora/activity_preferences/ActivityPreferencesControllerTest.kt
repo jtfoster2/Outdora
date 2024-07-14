@@ -1,11 +1,7 @@
 package com.esep.outdoora.activity_preferences
 
-import com.esep.outdoora.profile.Profile
-import com.esep.outdoora.profile.ProfileController
-import com.esep.outdoora.profile.ProfileRepository
 import com.esep.outdoora.user.User
 import com.esep.outdoora.user.UserRepository
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
@@ -13,15 +9,14 @@ import io.mockk.verify
 import jakarta.servlet.http.HttpSession
 import org.junit.jupiter.api.Test
 import org.springframework.ui.Model
-import java.security.Principal
 import java.util.*
 
 
 class ActivityPreferencesControllerTest {
-    val activityRepository = mockk<ActivityRepository>()
+    val activityPreferencesRepository = mockk<ActivityPreferencesRepository>()
     val userRepository = mockk<UserRepository>()
     val session = mockk<HttpSession>()
-    val controller = ActivityPreferencesController(activityRepository, userRepository)
+    val controller = ActivityPreferencesController(activityPreferencesRepository, userRepository)
 
     @Test
     fun updateExistingActivityPreferences(){
@@ -40,14 +35,14 @@ class ActivityPreferencesControllerTest {
             user = user
         )
 
-        every { activityRepository.findByUserId(1010L) } returns existingPreferences
+        every { activityPreferencesRepository.findByUserId(1010L) } returns existingPreferences
         every { userRepository.findById(1010L) } returns Optional.of(user)
-        every { activityRepository.save(any()) } answers { firstArg() }
+        every { activityPreferencesRepository.save(any()) } answers { firstArg() }
 
         controller.updateActivityPreferencesDetails(skiing = false,backpacking = true,travel = false,hiking = true,holidate = false, session)
 
         val activityPreferencesCaptor = mutableListOf<ActivityPreferences>()
-        verify { activityRepository.save(capture(activityPreferencesCaptor)) }
+        verify { activityPreferencesRepository.save(capture(activityPreferencesCaptor)) }
         val updatedPreferences = activityPreferencesCaptor[0]
 
         updatedPreferences.id shouldBe 1L
@@ -67,14 +62,14 @@ class ActivityPreferencesControllerTest {
         )
 
         every { session.getAttribute("userId") } returns 1010L
-        every { activityRepository.findByUserId(1010L) } returns null
+        every { activityPreferencesRepository.findByUserId(1010L) } returns null
         every { userRepository.findById(1010L) } returns Optional.of(user)
-        every { activityRepository.save(any()) } answers { firstArg() }
+        every { activityPreferencesRepository.save(any()) } answers { firstArg() }
 
         controller.updateActivityPreferencesDetails(skiing = false,backpacking = false,travel = false,hiking = false,holidate = false, session)
 
         val activityPreferencesCaptor = mutableListOf<ActivityPreferences>()
-        verify { activityRepository.save(capture(activityPreferencesCaptor)) }
+        verify { activityPreferencesRepository.save(capture(activityPreferencesCaptor)) }
         val newPreferences = activityPreferencesCaptor[0]
 
         newPreferences.id shouldBe null
@@ -88,15 +83,15 @@ class ActivityPreferencesControllerTest {
 
     @Test
     fun viewActivityPreferencesNotCreated(){
-        val activityRepository = mockk<ActivityRepository>()
+        val activityPreferencesRepository = mockk<ActivityPreferencesRepository>()
         val userRepository = mockk<UserRepository>()
         val session = mockk<HttpSession>()
         val model = mockk<Model>(relaxed = true)
 
-        val controller = ActivityPreferencesController(activityRepository, userRepository)
+        val controller = ActivityPreferencesController(activityPreferencesRepository, userRepository)
 
         every { session.getAttribute("userId") } returns 1010L
-        every { activityRepository.findByUserId(1010L) } returns null
+        every { activityPreferencesRepository.findByUserId(1010L) } returns null
 
         val result = controller.viewActivityPreferences(model, session)
 
@@ -110,12 +105,12 @@ class ActivityPreferencesControllerTest {
 
     @Test
     fun viewActivityPreferences(){
-        val activityRepository = mockk<ActivityRepository>()
+        val activityPreferencesRepository = mockk<ActivityPreferencesRepository>()
         val userRepository = mockk<UserRepository>()
         val session = mockk<HttpSession>()
         val model = mockk<Model>(relaxed = true)
 
-        val controller = ActivityPreferencesController(activityRepository, userRepository)
+        val controller = ActivityPreferencesController(activityPreferencesRepository, userRepository)
 
         val user = User(
             id = 1010,
@@ -132,7 +127,7 @@ class ActivityPreferencesControllerTest {
         )
 
         every { session.getAttribute("userId") } returns 1010L
-        every { activityRepository.findByUserId(1010L) } returns existingPreferences
+        every { activityPreferencesRepository.findByUserId(1010L) } returns existingPreferences
 
         val result = controller.viewActivityPreferences(model, session)
 
@@ -145,12 +140,12 @@ class ActivityPreferencesControllerTest {
 
     @Test
     fun editActivityPreferences(){
-        val activityRepository = mockk<ActivityRepository>()
+        val activityPreferencesRepository = mockk<ActivityPreferencesRepository>()
         val userRepository = mockk<UserRepository>()
         val session = mockk<HttpSession>()
         val model = mockk<Model>(relaxed = true)
 
-        val controller = ActivityPreferencesController(activityRepository, userRepository)
+        val controller = ActivityPreferencesController(activityPreferencesRepository, userRepository)
 
         val user = User(
             id = 1010,
@@ -167,7 +162,7 @@ class ActivityPreferencesControllerTest {
         )
 
         every { session.getAttribute("userId") } returns 1010L
-        every { activityRepository.findByUserId(1010L) } returns existingPreferences
+        every { activityPreferencesRepository.findByUserId(1010L) } returns existingPreferences
 
         val result = controller.editActivityPreferences(model, session)
 

@@ -1,7 +1,5 @@
 package com.esep.outdoora.activity_preferences
 
-import com.esep.outdoora.profile.Profile
-import com.esep.outdoora.user.User
 import com.esep.outdoora.user.UserRepository
 import org.springframework.stereotype.Controller
 import jakarta.servlet.http.HttpSession
@@ -13,36 +11,24 @@ import kotlin.jvm.optionals.getOrNull
 
 @Controller
 class ActivityPreferencesController(
-    var activityRepository: ActivityRepository,
+    var activityPreferencesRepository: ActivityPreferencesRepository,
     var userRepository: UserRepository,
 ) {
     @PostMapping("/editActivityPreferences")
     fun updateActivityPreferencesDetails(
-        @RequestParam skiing: Boolean?,
-        @RequestParam backpacking: Boolean?,
-        @RequestParam travel: Boolean?,
-        @RequestParam hiking: Boolean?,
-        @RequestParam holidate: Boolean?,
+        @RequestParam activityList: List<Activity>,
         session: HttpSession
     ) : String {
         val userId = session.getAttribute("userId") as Long
-        val activity = activityRepository.findByUserId(userId = userId)?.apply {
-            this.skiing = skiing ?: false
-            this.backpacking = backpacking ?: false
-            this.travel = travel ?: false
-            this.hiking = hiking ?: false
-            this.holidate = holidate ?: false
+        val activity = activityPreferencesRepository.findByUserId(userId = userId)?.apply {
+            this.activityList = activityList
         } ?: ActivityPreferences(
             id = null,
-            skiing = skiing ?: false,
-            backpacking = backpacking ?: false,
-            travel = travel ?: false,
-            hiking = hiking ?: false,
-            holidate = holidate ?: false,
+            activityList = activityList,
             user = userRepository.findById(userId).getOrNull()!!
         )
 
-        activityRepository.save(activity)
+        activityPreferencesRepository.save(activity)
 
         return "redirect:/activityPreferences"
     }
@@ -53,8 +39,12 @@ class ActivityPreferencesController(
         session: HttpSession,
     ): String {
         val userId = session.getAttribute("userId") as Long
-        val activity = activityRepository.findByUserId(userId = userId)
-        model.addAttribute("preferences", activity ?: ActivityPreferences(user = User()))
+        val activity = activityPreferencesRepository.findByUserId(userId = userId)
+        model.addAttribute("preferencesExists", activity?.let {true} ?: false)
+        activity?.also{
+            // Pass the activityList to the HTML to display
+            model.addAttribute("activityList", activity.activityList)
+        }
         return "activityPreferences"
     }
 
@@ -64,8 +54,12 @@ class ActivityPreferencesController(
         session: HttpSession
     ): String {
         val userId = session.getAttribute("userId") as Long
-        val activity = activityRepository.findByUserId(userId = userId)
-        model.addAttribute("preferences", activity ?: ActivityPreferences(user = User()))
+        val activity = activityPreferencesRepository.findByUserId(userId = userId)
+        model.addAttribute("preferencesExists", activity?.let {true} ?: false)
+        activity?.also{
+            // Pass the activityList to the HTML to display
+            model.addAttribute("activityList", activity.activityList)
+        }
         return "editActivityPreferences"
     }
 }
