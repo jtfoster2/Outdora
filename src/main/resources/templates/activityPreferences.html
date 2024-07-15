@@ -11,13 +11,11 @@
 </div>
 <div th:if="${preferencesExists}">
     <p>These are your current activity preferences:</p>
-    <ul>
-        <li th:each="activity : ${activityList}">
-            <p>Adventure: <span th:text="${activity.adventure}"></span></p>
-            <p>Skill Level: <span th:text="${activity.skillLevel}"></span></p>
-            <p>Attitude: <span th:text="${activity.attitude}"></span></p>
-        </li>
-    </ul>
+    <p>Skiing - Skill Level:<span th:text="${activity.skiingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.skiingAttitude}">Blah</span></p>
+    <p>Backpacking - Skill Level:<span th:text="${activity.backpackingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.backpackingAttitude}">Blah</span></p>
+    <p>Travel - Skill Level:<span th:text="${activity.travelSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.travelAttitude}">Blah</span></p>
+    <p>Hiking - Skill Level:<span th:text="${activity.hikingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.hikingAttitude}">Blah</span></p>
+    <p>Holidate - Skill Level:<span th:text="${activity.holidateSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.holidateAttitude}">Blah</span></p>
     <a href="/editActivityPreferences">Edit Preferences</a>
 </div>
 </body>

@@ -24,21 +24,23 @@ CREATE TABLE "profile"
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
 
-CREATE TABLE "activities"
-(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
-    adventure_name VARCHAR(255) NOT NULL,
-    skill_level VARCHAR(255) NOT NULL,
-    attitude VARCHAR(255) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES "users" (id)
-)
-
 CREATE TABLE "activity_preferences"
 (
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
-    activity_id BIGINT NOT NULL,
+    skiing_skill_level VARCHAR(20) NOT NULL,
+    skiing_attitude VARCHAR(20) NOT NULL,
+    backpacking_skill_level VARCHAR(20) NOT NULL,
+    backpacking_attitude VARCHAR(20) NOT NULL,
+    travel_skill_level VARCHAR(20) NOT NULL,
+    travel_attitude VARCHAR(20) NOT NULL,
+    hiking_skill_level VARCHAR(20) NOT NULL,
+    hiking_attitude VARCHAR(20) NOT NULL,
+    holidate_skill_level VARCHAR(20) NOT NULL,
+    holidate_attitude VARCHAR(20) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
-    FOREIGN KEY (activity_id) REFERENCES "activity" (id)
 );
+-- VARCHAR(20) NOT NULL -- you only get 20 chars for the enum name
+
+--    @Enumerated(EnumType.STRING) // This tells JPA to store the enum as a string
+--    var status: ArticleStatus

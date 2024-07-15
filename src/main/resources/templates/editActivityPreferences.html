@@ -8,46 +8,134 @@
 <div th:if="${!preferencesExists}">
     <form action="/editActivityPreferences" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        <!--TODO: Figure out how to display the List of Activities-->
-        <!-- Iterate over a predefined list of adventure names -->
-        <div th:each="adventureName : ${{'Skiing', 'Backpacking', 'Travel', 'Hiking', 'Holidate'}}">
-            <label th:text="${adventureName}"></label>
-            <select name="activityList[__${adventureName}__].skillLevel">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-            </select>
-            <select name="activityList[__${adventureName}__].attitude">
-                <option value="Immersion">Immersion</option>
-                <option value="Relaxation">Relaxation</option>
-                <option value="Challenge">Challenge</option>
-                <option value="Exercise">Exercise</option>
-            </select>
-            <br/>
-        </div>
+
+        <h3>Skiing</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.skiingSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.skiingSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.skiingSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.skiingAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.skiingAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.skiingAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.skiingAttitude}" value="EXERCISE"> Exercise<br>
+
+        <h3>Backpacking</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.backpackingSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.backpackingSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.backpackingSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.backpackingAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.backpackingAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.backpackingAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.backpackingAttitude}" value="EXERCISE"> Exercise<br>
+
+        <h3>Travel</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.travelSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.travelSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.travelSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.travelAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.travelAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.travelAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.travelAttitude}" value="EXERCISE"> Exercise<br>
+
+        <h3>Hiking</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.hikingSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.hikingSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.hikingSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.hikingAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.hikingAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.hikingAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.hikingAttitude}" value="EXERCISE"> Exercise<br>
+
+        <h3>Holidate</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.holidateSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.holidateSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.holidateSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.holidateAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.holidateAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.holidateAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.holidateAttitude}" value="EXERCISE"> Exercise<br>
+
         <input type="submit" value="Submit">
     </form>
 </div>
 <div th:if="${preferencesExists}">
     <form action="/editActivityPreferences" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        <!--TODO: Figure out how to display the List of Activities-->
-        <!-- Iterate over the existing activityList -->
-        <div th:each="activity : ${activityPreferences.activityList}">
-            <label th:text="${activity.adventureName}"></label>
-            <select th:name="'activityList[' + ${activity.adventureName} + '].skillLevel'">
-                <option value="Beginner" th:selected="${activity.skillLevel == 'Beginner'}">Beginner</option>
-                <option value="Intermediate" th:selected="${activity.skillLevel == 'Intermediate'}">Intermediate</option>
-                <option value="Advanced" th:selected="${activity.skillLevel == 'Advanced'}">Advanced</option>
-            </select>
-            <select th:name="'activityList[' + ${activity.adventureName} + '].attitude'">
-                <option value="Immersion" th:selected="${activity.attitude == 'Immersion'}">Immersion</option>
-                <option value="Relaxation" th:selected="${activity.attitude == 'Relaxation'}">Relaxation</option>
-                <option value="Challenge" th:selected="${activity.attitude == 'Challenge'}">Challenge</option>
-                <option value="Exercise" th:selected="${activity.attitude == 'Exercise'}">Exercise</option>
-            </select>
-            <br/>
-        </div>
+
+        <h3>Skiing</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.skiingSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.skiingSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.skiingSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.skiingAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.skiingAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.skiingAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.skiingAttitude}" value="EXERCISE"> Exercise<br>
+
+        <h3>Backpacking</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.backpackingSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.backpackingSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.backpackingSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.backpackingAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.backpackingAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.backpackingAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.backpackingAttitude}" value="EXERCISE"> Exercise<br>
+
+        <h3>Travel</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.travelSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.travelSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.travelSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.travelAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.travelAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.travelAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.travelAttitude}" value="EXERCISE"> Exercise<br>
+
+        <h3>Hiking</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.hikingSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.hikingSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.hikingSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.hikingAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.hikingAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.hikingAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.hikingAttitude}" value="EXERCISE"> Exercise<br>
+
+        <h3>Holidate</h3>
+        <label>Skill Level:</label><br>
+        <input type="radio" th:field="${activity.holidateSkillLevel}" value="BEGINNER"> Beginner
+        <input type="radio" th:field="${activity.holidateSkillLevel}" value="INTERMEDIATE"> Intermediate
+        <input type="radio" th:field="${activity.holidateSkillLevel}" value="ADVANCED"> Advanced<br>
+
+        <label>Attitude:</label><br>
+        <input type="radio" th:field="${activity.holidateAttitude}" value="IMMERSION"> Immersion
+        <input type="radio" th:field="${activity.holidateAttitude}" value="RELAXATION"> Relaxation
+        <input type="radio" th:field="${activity.holidateAttitude}" value="CHALLENGE"> Challenge
+        <input type="radio" th:field="${activity.holidateAttitude}" value="EXERCISE"> Exercise<br>
+
         <input type="submit" value="Submit">
     </form>
 </div>

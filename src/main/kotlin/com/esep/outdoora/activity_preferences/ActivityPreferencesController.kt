@@ -1,5 +1,6 @@
 package com.esep.outdoora.activity_preferences
 
+import com.esep.outdoora.user.User
 import com.esep.outdoora.user.UserRepository
 import org.springframework.stereotype.Controller
 import jakarta.servlet.http.HttpSession
@@ -16,15 +17,42 @@ class ActivityPreferencesController(
 ) {
     @PostMapping("/editActivityPreferences")
     fun updateActivityPreferencesDetails(
-        @RequestParam activityList: List<Activity>,
+        @RequestParam skiingSkillLevel: SkillLevel,
+        @RequestParam skiingAttitude: Attitude,
+        @RequestParam backpackingSkillLevel: SkillLevel,
+        @RequestParam backpackingAttitude: Attitude,
+        @RequestParam travelSkillLevel: SkillLevel,
+        @RequestParam travelAttitude: Attitude,
+        @RequestParam hikingSkillLevel: SkillLevel,
+        @RequestParam hikingAttitude: Attitude,
+        @RequestParam holidateSkillLevel: SkillLevel,
+        @RequestParam holidateAttitude: Attitude,
         session: HttpSession
     ) : String {
         val userId = session.getAttribute("userId") as Long
         val activity = activityPreferencesRepository.findByUserId(userId = userId)?.apply {
-            this.activityList = activityList
+            this.skiingSkillLevel = skiingSkillLevel
+            this.skiingAttitude = skiingAttitude
+            this.backpackingSkillLevel = backpackingSkillLevel
+            this.backpackingAttitude = backpackingAttitude
+            this.travelSkillLevel = travelSkillLevel
+            this.travelAttitude = travelAttitude
+            this.hikingSkillLevel = hikingSkillLevel
+            this.hikingAttitude = hikingAttitude
+            this.holidateSkillLevel = holidateSkillLevel
+            this.holidateAttitude = holidateAttitude
         } ?: ActivityPreferences(
             id = null,
-            activityList = activityList,
+            skiingSkillLevel = skiingSkillLevel,
+            skiingAttitude = skiingAttitude,
+            backpackingSkillLevel = backpackingSkillLevel,
+            backpackingAttitude = backpackingAttitude,
+            travelSkillLevel = travelSkillLevel,
+            travelAttitude = travelAttitude,
+            hikingSkillLevel = hikingSkillLevel,
+            hikingAttitude = hikingAttitude,
+            holidateSkillLevel = holidateSkillLevel,
+            holidateAttitude = holidateAttitude,
             user = userRepository.findById(userId).getOrNull()!!
         )
 
@@ -32,6 +60,7 @@ class ActivityPreferencesController(
 
         return "redirect:/activityPreferences"
     }
+
 
     @GetMapping("/activityPreferences")
     fun viewActivityPreferences(
@@ -41,10 +70,8 @@ class ActivityPreferencesController(
         val userId = session.getAttribute("userId") as Long
         val activity = activityPreferencesRepository.findByUserId(userId = userId)
         model.addAttribute("preferencesExists", activity?.let {true} ?: false)
-        activity?.also{
-            // Pass the activityList to the HTML to display
-            model.addAttribute("activityList", activity.activityList)
-        }
+        activity?.also { model.addAttribute("activity", activity) }?:
+        model.addAttribute("activity", ActivityPreferences(userId, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, User()))
         return "activityPreferences"
     }
 
@@ -56,10 +83,8 @@ class ActivityPreferencesController(
         val userId = session.getAttribute("userId") as Long
         val activity = activityPreferencesRepository.findByUserId(userId = userId)
         model.addAttribute("preferencesExists", activity?.let {true} ?: false)
-        activity?.also{
-            // Pass the activityList to the HTML to display
-            model.addAttribute("activityList", activity.activityList)
-        }
+        activity?.also{ model.addAttribute("activity", activity) }?:
+        model.addAttribute("activity", ActivityPreferences(userId, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, User()))
         return "editActivityPreferences"
     }
 }
