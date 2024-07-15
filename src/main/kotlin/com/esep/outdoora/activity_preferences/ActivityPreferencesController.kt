@@ -1,6 +1,5 @@
 package com.esep.outdoora.activity_preferences
 
-import com.esep.outdoora.profile.Profile
 import com.esep.outdoora.user.User
 import com.esep.outdoora.user.UserRepository
 import org.springframework.stereotype.Controller
@@ -13,39 +12,55 @@ import kotlin.jvm.optionals.getOrNull
 
 @Controller
 class ActivityPreferencesController(
-    var activityRepository: ActivityRepository,
+    var activityPreferencesRepository: ActivityPreferencesRepository,
     var userRepository: UserRepository,
 ) {
     @PostMapping("/editActivityPreferences")
     fun updateActivityPreferencesDetails(
-        @RequestParam skiing: Boolean?,
-        @RequestParam backpacking: Boolean?,
-        @RequestParam travel: Boolean?,
-        @RequestParam hiking: Boolean?,
-        @RequestParam holidate: Boolean?,
+        @RequestParam skiingSkillLevel: SkillLevel,
+        @RequestParam skiingAttitude: Attitude,
+        @RequestParam backpackingSkillLevel: SkillLevel,
+        @RequestParam backpackingAttitude: Attitude,
+        @RequestParam travelSkillLevel: SkillLevel,
+        @RequestParam travelAttitude: Attitude,
+        @RequestParam hikingSkillLevel: SkillLevel,
+        @RequestParam hikingAttitude: Attitude,
+        @RequestParam holidateSkillLevel: SkillLevel,
+        @RequestParam holidateAttitude: Attitude,
         session: HttpSession
     ) : String {
         val userId = session.getAttribute("userId") as Long
-        val activity = activityRepository.findByUserId(userId = userId)?.apply {
-            this.skiing = skiing ?: false
-            this.backpacking = backpacking ?: false
-            this.travel = travel ?: false
-            this.hiking = hiking ?: false
-            this.holidate = holidate ?: false
+        val activity = activityPreferencesRepository.findByUserId(userId = userId)?.apply {
+            this.skiingSkillLevel = skiingSkillLevel
+            this.skiingAttitude = skiingAttitude
+            this.backpackingSkillLevel = backpackingSkillLevel
+            this.backpackingAttitude = backpackingAttitude
+            this.travelSkillLevel = travelSkillLevel
+            this.travelAttitude = travelAttitude
+            this.hikingSkillLevel = hikingSkillLevel
+            this.hikingAttitude = hikingAttitude
+            this.holidateSkillLevel = holidateSkillLevel
+            this.holidateAttitude = holidateAttitude
         } ?: ActivityPreferences(
             id = null,
-            skiing = skiing ?: false,
-            backpacking = backpacking ?: false,
-            travel = travel ?: false,
-            hiking = hiking ?: false,
-            holidate = holidate ?: false,
+            skiingSkillLevel = skiingSkillLevel,
+            skiingAttitude = skiingAttitude,
+            backpackingSkillLevel = backpackingSkillLevel,
+            backpackingAttitude = backpackingAttitude,
+            travelSkillLevel = travelSkillLevel,
+            travelAttitude = travelAttitude,
+            hikingSkillLevel = hikingSkillLevel,
+            hikingAttitude = hikingAttitude,
+            holidateSkillLevel = holidateSkillLevel,
+            holidateAttitude = holidateAttitude,
             user = userRepository.findById(userId).getOrNull()!!
         )
 
-        activityRepository.save(activity)
+        activityPreferencesRepository.save(activity)
 
         return "redirect:/activityPreferences"
     }
+
 
     @GetMapping("/activityPreferences")
     fun viewActivityPreferences(
@@ -53,8 +68,10 @@ class ActivityPreferencesController(
         session: HttpSession,
     ): String {
         val userId = session.getAttribute("userId") as Long
-        val activity = activityRepository.findByUserId(userId = userId)
-        model.addAttribute("preferences", activity ?: ActivityPreferences(user = User()))
+        val activity = activityPreferencesRepository.findByUserId(userId = userId)
+        model.addAttribute("preferencesExists", activity?.let {true} ?: false)
+        activity?.also { model.addAttribute("activity", activity) }?:
+        model.addAttribute("activity", ActivityPreferences(userId, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, User()))
         return "activityPreferences"
     }
 
@@ -64,8 +81,10 @@ class ActivityPreferencesController(
         session: HttpSession
     ): String {
         val userId = session.getAttribute("userId") as Long
-        val activity = activityRepository.findByUserId(userId = userId)
-        model.addAttribute("preferences", activity ?: ActivityPreferences(user = User()))
+        val activity = activityPreferencesRepository.findByUserId(userId = userId)
+        model.addAttribute("preferencesExists", activity?.let {true} ?: false)
+        activity?.also{ model.addAttribute("activity", activity) }?:
+        model.addAttribute("activity", ActivityPreferences(userId, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, User()))
         return "editActivityPreferences"
     }
 }
