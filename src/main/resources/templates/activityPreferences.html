@@ -4,15 +4,20 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<!--<div th:if="${profileExists}">-->
-<h1>Preferences</h1>
-<p>These are your current activity preferences:</p>
-<p th:if="${preferences.skiing}">You love to skiing!</p><p th:if="${!preferences.skiing}">You do not like to skiing.</p>
-<p th:if="${preferences.hiking}">You love to hiking!</p><p th:if="${!preferences.hiking}">You do not like to hiking.</p>
-<p th:if="${preferences.backpacking}">You love to backpacking!</p><p th:if="${!preferences.backpacking}">You do not like to backpacking.</p>
-<p th:if="${preferences.travel}">You love to travel!</p><p th:if="${!preferences.travel}">You do not like to travel.</p>
-<p th:if="${preferences.holidate}">You love to holidate!</p><p th:if="${!preferences.holidate}">You do not like to holidate.</p>
-<a href="/editActivityPreferences">Edit Preferences</a>
+<h1>Activity Preferences</h1>
+<div th:if="${!preferencesExists}">
+    <p>You don't have any activity preferences yet!</p>
+    <a href="/editActivityPreferences">Edit Activity Preferences</a>
+</div>
+<div th:if="${preferencesExists}">
+    <p>These are your current activity preferences:</p>
+    <p>Skiing - Skill Level:<span th:text="${activity.skiingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.skiingAttitude}">Blah</span></p>
+    <p>Backpacking - Skill Level:<span th:text="${activity.backpackingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.backpackingAttitude}">Blah</span></p>
+    <p>Travel - Skill Level:<span th:text="${activity.travelSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.travelAttitude}">Blah</span></p>
+    <p>Hiking - Skill Level:<span th:text="${activity.hikingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.hikingAttitude}">Blah</span></p>
+    <p>Holidate - Skill Level:<span th:text="${activity.holidateSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.holidateAttitude}">Blah</span></p>
+    <a href="/editActivityPreferences">Edit Preferences</a>
+</div>
 <p>Click <a th:href="@{/}">here</a> to main.</p>
 </body>
 </html>
