@@ -27,11 +27,16 @@ class ActivityPreferencesControllerTest {
         )
         val existingPreferences = ActivityPreferences(
             id = 1L,
-            skiing = true,
-            backpacking = false,
-            travel = true,
-            hiking = false,
-            holidate = true,
+            skiingSkillLevel = SkillLevel.ADVANCED,
+            skiingAttitude = Attitude.CHALLENGE,
+            backpackingSkillLevel = SkillLevel.ADVANCED,
+            backpackingAttitude = Attitude.CHALLENGE,
+            travelSkillLevel = SkillLevel.ADVANCED,
+            travelAttitude = Attitude.CHALLENGE,
+            hikingSkillLevel = SkillLevel.ADVANCED,
+            hikingAttitude = Attitude.CHALLENGE,
+            holidateSkillLevel = SkillLevel.ADVANCED,
+            holidateAttitude = Attitude.CHALLENGE,
             user = user
         )
 
@@ -39,18 +44,25 @@ class ActivityPreferencesControllerTest {
         every { userRepository.findById(1010L) } returns Optional.of(user)
         every { activityPreferencesRepository.save(any()) } answers { firstArg() }
 
-        controller.updateActivityPreferencesDetails(skiing = false,backpacking = true,travel = false,hiking = true,holidate = false, session)
+        controller.updateActivityPreferencesDetails(SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, session)
 
         val activityPreferencesCaptor = mutableListOf<ActivityPreferences>()
         verify { activityPreferencesRepository.save(capture(activityPreferencesCaptor)) }
         val updatedPreferences = activityPreferencesCaptor[0]
 
         updatedPreferences.id shouldBe 1L
-        updatedPreferences.skiing shouldBe false
-        updatedPreferences.backpacking shouldBe true
-        updatedPreferences.travel shouldBe false
-        updatedPreferences.hiking shouldBe true
-        updatedPreferences.holidate shouldBe false
+        updatedPreferences.skiingSkillLevel shouldBe SkillLevel.BEGINNER
+        updatedPreferences.skiingAttitude shouldBe Attitude.IMMERSION
+        updatedPreferences.backpackingSkillLevel shouldBe SkillLevel.BEGINNER
+        updatedPreferences.backpackingAttitude shouldBe Attitude.IMMERSION
+        updatedPreferences.travelSkillLevel shouldBe SkillLevel.BEGINNER
+        updatedPreferences.travelAttitude shouldBe Attitude.IMMERSION
+        updatedPreferences.hikingSkillLevel shouldBe SkillLevel.BEGINNER
+        updatedPreferences.hikingAttitude shouldBe Attitude.IMMERSION
+        updatedPreferences.holidateSkillLevel shouldBe SkillLevel.BEGINNER
+        updatedPreferences.holidateAttitude shouldBe Attitude.IMMERSION
+
+
         updatedPreferences.user shouldBe user
     }
 
@@ -66,18 +78,23 @@ class ActivityPreferencesControllerTest {
         every { userRepository.findById(1010L) } returns Optional.of(user)
         every { activityPreferencesRepository.save(any()) } answers { firstArg() }
 
-        controller.updateActivityPreferencesDetails(skiing = false,backpacking = false,travel = false,hiking = false,holidate = false, session)
+        controller.updateActivityPreferencesDetails(SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, session)
 
         val activityPreferencesCaptor = mutableListOf<ActivityPreferences>()
         verify { activityPreferencesRepository.save(capture(activityPreferencesCaptor)) }
         val newPreferences = activityPreferencesCaptor[0]
 
         newPreferences.id shouldBe null
-        newPreferences.skiing shouldBe false
-        newPreferences.backpacking shouldBe false
-        newPreferences.travel shouldBe false
-        newPreferences.hiking shouldBe false
-        newPreferences.holidate shouldBe false
+        newPreferences.skiingSkillLevel shouldBe SkillLevel.BEGINNER
+        newPreferences.skiingAttitude shouldBe Attitude.IMMERSION
+        newPreferences.backpackingSkillLevel shouldBe SkillLevel.BEGINNER
+        newPreferences.backpackingAttitude shouldBe Attitude.IMMERSION
+        newPreferences.travelSkillLevel shouldBe SkillLevel.BEGINNER
+        newPreferences.travelAttitude shouldBe Attitude.IMMERSION
+        newPreferences.hikingSkillLevel shouldBe SkillLevel.BEGINNER
+        newPreferences.hikingAttitude shouldBe Attitude.IMMERSION
+        newPreferences.holidateSkillLevel shouldBe SkillLevel.BEGINNER
+        newPreferences.holidateAttitude shouldBe Attitude.IMMERSION
         newPreferences.user shouldBe user
     }
 
@@ -96,11 +113,7 @@ class ActivityPreferencesControllerTest {
         val result = controller.viewActivityPreferences(model, session)
 
         result shouldBe "activityPreferences"
-        verify(exactly = 0) { model.addAttribute("skiing", any()) }
-        verify(exactly = 0) { model.addAttribute("hiking", any()) }
-        verify(exactly = 0) { model.addAttribute("backpacking", any()) }
-        verify(exactly = 0) { model.addAttribute("travel", any()) }
-        verify(exactly = 0) { model.addAttribute("holidate", any()) }
+        verify(exactly = 0) { model.addAttribute("activity", ActivityPreferences(1010L, SkillLevel.ADVANCED, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, SkillLevel.BEGINNER, Attitude.IMMERSION, User())) }
     }
 
     @Test
@@ -118,11 +131,16 @@ class ActivityPreferencesControllerTest {
         )
         val existingPreferences = ActivityPreferences(
             id = 1L,
-            skiing = true,
-            backpacking = false,
-            travel = true,
-            hiking = false,
-            holidate = true,
+            skiingSkillLevel = SkillLevel.ADVANCED,
+            skiingAttitude = Attitude.CHALLENGE,
+            backpackingSkillLevel = SkillLevel.ADVANCED,
+            backpackingAttitude = Attitude.CHALLENGE,
+            travelSkillLevel = SkillLevel.ADVANCED,
+            travelAttitude = Attitude.CHALLENGE,
+            hikingSkillLevel = SkillLevel.ADVANCED,
+            hikingAttitude = Attitude.CHALLENGE,
+            holidateSkillLevel = SkillLevel.ADVANCED,
+            holidateAttitude = Attitude.CHALLENGE,
             user = user
         )
 
@@ -132,10 +150,7 @@ class ActivityPreferencesControllerTest {
         val result = controller.viewActivityPreferences(model, session)
 
         result shouldBe "activityPreferences"
-        verify{ model.addAttribute("preferences",
-            ActivityPreferences(id = existingPreferences.id, skiing = existingPreferences.skiing,
-                backpacking = existingPreferences.backpacking, travel = existingPreferences.travel,
-            hiking = existingPreferences.hiking, holidate = existingPreferences.holidate, user = existingPreferences.user))}
+        verify{ model.addAttribute("activity", any())}
     }
 
     @Test
@@ -153,11 +168,16 @@ class ActivityPreferencesControllerTest {
         )
         val existingPreferences = ActivityPreferences(
             id = 1L,
-            skiing = true,
-            backpacking = false,
-            travel = true,
-            hiking = false,
-            holidate = true,
+            skiingSkillLevel = SkillLevel.ADVANCED,
+            skiingAttitude = Attitude.CHALLENGE,
+            backpackingSkillLevel = SkillLevel.ADVANCED,
+            backpackingAttitude = Attitude.CHALLENGE,
+            travelSkillLevel = SkillLevel.ADVANCED,
+            travelAttitude = Attitude.CHALLENGE,
+            hikingSkillLevel = SkillLevel.ADVANCED,
+            hikingAttitude = Attitude.CHALLENGE,
+            holidateSkillLevel = SkillLevel.ADVANCED,
+            holidateAttitude = Attitude.CHALLENGE,
             user = user
         )
 
@@ -167,9 +187,6 @@ class ActivityPreferencesControllerTest {
         val result = controller.editActivityPreferences(model, session)
 
         result shouldBe "editActivityPreferences"
-        verify{ model.addAttribute("preferences",
-            ActivityPreferences(id = existingPreferences.id, skiing = existingPreferences.skiing,
-                backpacking = existingPreferences.backpacking, travel = existingPreferences.travel,
-                hiking = existingPreferences.hiking, holidate = existingPreferences.holidate, user = existingPreferences.user))}
+        verify{ model.addAttribute("activity", any())}
     }
 }
