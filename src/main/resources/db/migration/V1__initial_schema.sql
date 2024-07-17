@@ -35,3 +35,13 @@ CREATE TABLE "activity_preferences"
     holidate BOOLEAN NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
+
+CREATE TABLE chat
+(
+    id BIGSERIAL PRIMARY KEY,
+    user_a_id BIGINT NOT NULL,
+    user_b_id BIGINT NOT NULL,
+    chat TEXT NOT NULL,
+    FOREIGN KEY (user_a_id) REFERENCES users (id),
+    FOREIGN KEY (user_b_id) REFERENCES users (id)
+);
