@@ -3,8 +3,6 @@ package com.esep.outdoora.profile
 import com.esep.outdoora.oauth2.ProviderDetails
 import com.esep.outdoora.user.User
 import jakarta.persistence.*
-import org.hibernate.annotations.Type
-import org.hibernate.type.descriptor.jdbc.BinaryJdbcType
 import org.springframework.data.jpa.repository.JpaRepository
 
 @Entity
