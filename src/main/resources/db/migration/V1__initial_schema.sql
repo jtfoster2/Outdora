@@ -21,6 +21,7 @@ CREATE TABLE "profile"
     name VARCHAR(255) NOT NULL,
     age INT NOT NULL,
     description TEXT,
+    image BYTEA,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
 
