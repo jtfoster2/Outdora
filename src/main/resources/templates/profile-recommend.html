@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile recommendations</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th> Title</th>
+        <th> Author</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${profiles.empty}">
+        <td colspan="2"> No recommended profile Available</td>
+    </tr>
+    <tr th:each="profile : ${profiles}">
+        <td><span th:text="${profile.name}"> Name </span></td>
+        <td><span th:text="${profile.age}"> Age </span></td>
+        <td><span th:text="${profile.description}"> Description </span></td>
+        <td>
+            <form action="/likeprofile" method="post">
+                <!--                <input name="user_id" th:value="${profile.user.user_id}" type="hidden">-->
+                <input type="submit" value="LIKE">
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
