@@ -54,6 +54,11 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
+    testImplementation("io.cucumber:cucumber-java:7.14.0")
+    testImplementation("io.cucumber:cucumber-junit:7.14.0")
+    testImplementation("io.cucumber:cucumber-spring:7.14.0")
+    testImplementation("io.cucumber:cucumber-junit-platform-engine:7.14.0")
+    testImplementation("io.cucumber:cucumber-bom:7.14.0")
 
     // https://mvnrepository.com/artifact/io.kotest/kotest-assertions-core-jvm
     testImplementation("io.kotest:kotest-assertions-core-jvm:5.9.1")

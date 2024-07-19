@@ -21,6 +21,7 @@ CREATE TABLE "profile"
     name VARCHAR(255) NOT NULL,
     age INT NOT NULL,
     description TEXT,
+    image BYTEA,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
 
@@ -28,11 +29,16 @@ CREATE TABLE "activity_preferences"
 (
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
-    skiing BOOLEAN NOT NULL,
-    hiking BOOLEAN NOT NULL,
-    backpacking BOOLEAN NOT NULL,
-    travel BOOLEAN NOT NULL,
-    holidate BOOLEAN NOT NULL,
+    skiing_skill_level VARCHAR(20) NOT NULL,
+    skiing_attitude VARCHAR(20) NOT NULL,
+    backpacking_skill_level VARCHAR(20) NOT NULL,
+    backpacking_attitude VARCHAR(20) NOT NULL,
+    travel_skill_level VARCHAR(20) NOT NULL,
+    travel_attitude VARCHAR(20) NOT NULL,
+    hiking_skill_level VARCHAR(20) NOT NULL,
+    hiking_attitude VARCHAR(20) NOT NULL,
+    holidate_skill_level VARCHAR(20) NOT NULL,
+    holidate_attitude VARCHAR(20) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
 
