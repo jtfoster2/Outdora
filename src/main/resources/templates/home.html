@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <title>Spring Security Example</title>
 </head>
@@ -10,5 +10,17 @@
 <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
 <p>Click <a th:href="@{/profile}">here</a> to visit your profile.</p>
 <p>Click <a th:href="@{/activityPreferences}">here</a> to visit your activity preferences.</p>
+
+<h2>Share Text</h2>
+<form th:action="@{/share}" method="get">
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" required><br><br>
+
+    <label for="text">Text:</label>
+    <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+
+    <button type="submit">Share</button>
+</form>
+
 </body>
 </html>
