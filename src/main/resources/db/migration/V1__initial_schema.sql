@@ -8,7 +8,7 @@ CREATE TABLE "provider_details"
 (
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT,
-    provider_name VARCHAR(255) NOT NULL,
+    provider_name VARCHAR(255) ,
     provider_user_id VARCHAR(255) UNIQUE,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
