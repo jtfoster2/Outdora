@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <title>Spring Security Example</title>
 </head>
@@ -18,5 +18,6 @@
     <p>Holidate - Skill Level:<span th:text="${activity.holidateSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.holidateAttitude}">Blah</span></p>
     <a href="/editActivityPreferences">Edit Preferences</a>
 </div>
+<p>Click <a th:href="@{/}">here</a> to main.</p>
 </body>
 </html>

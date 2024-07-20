@@ -1,6 +1,5 @@
 package com.esep.outdoora.profile
 
-import com.esep.outdoora.oauth2.ProviderDetails
 import com.esep.outdoora.user.User
 import jakarta.persistence.*
 import org.springframework.data.jpa.repository.JpaRepository
@@ -21,14 +20,16 @@ data class Profile(
     @Column
     var description: String? = null,
 
+
     @Column
     var image: ByteArray? = null,
 
-    @OneToOne(fetch = FetchType.LAZY)
+    
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User
 )
 
-interface ProfileRepository: JpaRepository<Profile, Long> {
+interface ProfileRepository : JpaRepository<Profile, Long> {
     fun findByUserId(userId: Long): Profile?
 }
