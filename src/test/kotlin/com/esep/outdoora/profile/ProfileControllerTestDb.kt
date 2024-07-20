@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpSession
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.ui.Model
+import org.springframework.web.multipart.MultipartFile
 import kotlin.test.Test
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -27,7 +28,10 @@ class ProfileControllerTestDb(
         val session = mockk<HttpSession>()
         every { session.getAttribute("userId") } returns user.id
         // then call the updateProfileDetails method
-        profileController.updateProfileDetails("newName", 30, "new description", session)
+        val multipartFile = mockk<MultipartFile>().also {
+            every { it.bytes } returns "image".toByteArray()
+        }
+        profileController.updateProfileDetails("newName", 30, "new description", multipartFile, session)
         // then check that the profile is different in the repository
         val profile = profileRepository.findByUserId(user.id!!)
         profile!!.name shouldBe "newName"
@@ -59,7 +63,15 @@ class ProfileControllerTestDb(
     fun `test editProfile`() {
         // create the user and then profile
         val user = userRepository.save(User(email = "blah"))
-        profileRepository.save(Profile(name = "oldName", age = 25, description = "old description", user = user))
+        profileRepository.save(
+            Profile(
+                name = "oldName",
+                age = 25,
+                description = "old description",
+                image = null,
+                user = user
+            )
+        )
         // mock the session
         val session = mockk<HttpSession>()
         every { session.getAttribute("userId") } returns user.id

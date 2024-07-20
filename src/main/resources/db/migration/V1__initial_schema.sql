@@ -21,6 +21,7 @@ CREATE TABLE "profile"
     name VARCHAR(255) NOT NULL,
     age INT NOT NULL,
     description TEXT,
+    image BYTEA,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
 
@@ -40,7 +41,13 @@ CREATE TABLE "activity_preferences"
     holidate_attitude VARCHAR(20) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
--- VARCHAR(20) NOT NULL -- you only get 20 chars for the enum name
 
---    @Enumerated(EnumType.STRING) // This tells JPA to store the enum as a string
---    var status: ArticleStatus
+CREATE TABLE chat
+(
+    id BIGSERIAL PRIMARY KEY,
+    user_a_id BIGINT NOT NULL,
+    user_b_id BIGINT NOT NULL,
+    chat TEXT NOT NULL,
+    FOREIGN KEY (user_a_id) REFERENCES users (id),
+    FOREIGN KEY (user_b_id) REFERENCES users (id)
+);
