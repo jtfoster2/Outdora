@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script
+            src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js"
+            crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<!--    <script type="importmap">-->
+<!--        {-->
+<!--          "imports": {-->
+<!--            "@stomp/stompjs": "https://ga.jspm.io/npm:@stomp/stompjs@7.0.0/esm6/index.js"-->
+<!--          }-->
+<!--        }-->
+<!--    </script>-->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var userId = [[${user}]];
+        var recipientId = [[${recipient}]];
+        var recipientName = [[${recipientName}]];
+        console.log("User: " + userId);
+        console.log("Recipient: " + recipientId);
+        /*]]>*/
+    </script>
+    <script src="/js/chat.js"></script>
+</head>
+<body>
+<p th:text="${user}">user</p>
+<p th:text="${recipient}">recipient</p>
+<div id="messageContainer">
+<!--    TODO - put any existing messages here on page load. -->
+</div>
+<input type="text" id="messageInput">
+<button onclick="handleSendMessage()">Send</button>
+</body>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var chatMessages = [[${chat}]];
+    console.log(chatMessages);
+    chatMessages.forEach(message => {
+        displayMessage(message);
+    });
+    /*]]>*/
+</script>
+</html>
