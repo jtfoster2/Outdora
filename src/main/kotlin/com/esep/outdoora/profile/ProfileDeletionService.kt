@@ -1,13 +1,13 @@
 package com.esep.outdoora.profile
 
-import com.esep.outdoora.activity_preferences.ActivityRepository
+import com.esep.outdoora.activity_preferences.ActivityPreferencesRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ProfileDeletionService(
     private val profileRepository: ProfileRepository,
-    private val activityRepository: ActivityRepository,
+    private val activityRepository: ActivityPreferencesRepository,
 ) {
 
     @Transactional
