@@ -1,16 +1,16 @@
-package com.esep.outdoora
+package com.esep.outdoora.config
 
+import com.esep.outdoora.OAuth2LoginSuccessHandler
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer
-import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
 @EnableWebSecurity
@@ -22,6 +22,18 @@ class WebSecurityConfig {
     private lateinit var oAuth2LoginSuccessHandler: OAuth2LoginSuccessHandler
 
     private val googleLogoutUri: String = "https://accounts.google.com/Logout"
+
+    @Bean
+    fun corsConfigurer(): WebMvcConfigurer {
+        return object : WebMvcConfigurer {
+            override fun addCorsMappings(registry: CorsRegistry) {
+                registry.addMapping("/**")
+                    .allowedOrigins("*")
+                    .allowedMethods("*")
+                    .allowedHeaders("*")
+            }
+        }
+    }
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
@@ -45,6 +57,7 @@ class WebSecurityConfig {
                         response.sendRedirect(logoutUrl)
                     }
             }
+            .csrf { csrf -> csrf.ignoringRequestMatchers("/ws/**") } // Disable CSRF protection for WebSocket endpoints
 
         return http.build()
     }

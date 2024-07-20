@@ -21,6 +21,7 @@ CREATE TABLE "profile"
     name VARCHAR(255) NOT NULL,
     age INT NOT NULL,
     description TEXT,
+    image BYTEA,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
 );
 
@@ -39,6 +40,16 @@ CREATE TABLE "activity_preferences"
     holidate_skill_level VARCHAR(20) NOT NULL,
     holidate_attitude VARCHAR(20) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
+);
+
+CREATE TABLE chat
+(
+    id BIGSERIAL PRIMARY KEY,
+    user_a_id BIGINT NOT NULL,
+    user_b_id BIGINT NOT NULL,
+    chat TEXT NOT NULL,
+    FOREIGN KEY (user_a_id) REFERENCES users (id),
+    FOREIGN KEY (user_b_id) REFERENCES users (id)
 );
 
 insert into users (email) values ('krosettini0@mysql.com');
@@ -2248,3 +2259,4 @@ insert into activity_preferences (user_id, skiing_skill_level, skiing_attitude, 
 insert into activity_preferences (user_id, skiing_skill_level, skiing_attitude, backpacking_skill_level, backpacking_attitude, travel_skill_level, travel_attitude, hiking_skill_level, hiking_attitude, holidate_skill_level, holidate_attitude) values ('471', 'BEGINNER', 'RELAXATION', 'ADVANCED', 'RELAXATION', 'INTERMEDIATE', 'EXERCISE', 'BEGINNER', 'RELAXATION', 'INTERMEDIATE', 'RELAXATION');
 insert into activity_preferences (user_id, skiing_skill_level, skiing_attitude, backpacking_skill_level, backpacking_attitude, travel_skill_level, travel_attitude, hiking_skill_level, hiking_attitude, holidate_skill_level, holidate_attitude) values ('749', 'BEGINNER', 'RELAXATION', 'BEGINNER', 'EXERCISE', 'INTERMEDIATE', 'IMMERSION', 'BEGINNER', 'EXERCISE', 'INTERMEDIATE', 'EXERCISE');
 insert into activity_preferences (user_id, skiing_skill_level, skiing_attitude, backpacking_skill_level, backpacking_attitude, travel_skill_level, travel_attitude, hiking_skill_level, hiking_attitude, holidate_skill_level, holidate_attitude) values ('205', 'INTERMEDIATE', 'RELAXATION', 'BEGINNER', 'CHALLENGE', 'INTERMEDIATE', 'IMMERSION', 'INTERMEDIATE', 'EXERCISE', 'ADVANCED', 'CHALLENGE');
+
