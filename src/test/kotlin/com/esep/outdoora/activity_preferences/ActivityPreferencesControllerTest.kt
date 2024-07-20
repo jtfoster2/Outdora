@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.ui.Model
 import java.util.*
 
-
 class ActivityPreferencesControllerTest {
     val activityPreferencesRepository = mockk<ActivityPreferencesRepository>()
     val userRepository = mockk<UserRepository>()
