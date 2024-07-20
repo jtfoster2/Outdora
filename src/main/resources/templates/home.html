@@ -35,6 +35,21 @@
 <p>Click <a th:href="@{/profile}">here</a> to visit your profile.</p>
 <p>Click <a th:href="@{/activityPreferences}">here</a> to visit your activity preferences.</p>
 <p>Click <a th:href="@{/deleteProfileConfirmation}">here</a> to delete user profile.</p>
+
+
+<h2>Share Text</h2>
+<form th:action="@{/share}" method="get">
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" required><br><br>
+
+    <label for="text">Text:</label>
+    <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+
+    <button type="submit">Share</button>
+</form>
+
+
 <p>Click <a th:href="@{/conversation/selector}">here</a> to visit your messaging.</p>
+
 </body>
 </html>
