@@ -1,0 +1,23 @@
+<!--This is where you will pick one of your friends to message, and it will direct you to the otherUserId.html.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversation Selection</title>
+</head>
+<body>
+<h1>Choose a conversation:</h1>
+<ul>
+    <li th:each="otherUserId : ${conversations}">
+        <a th:href="@{/conversation/{userId}/{otherUserId}(userId=${userId}, otherUserId=${otherUserId})}">Conversation with [[${otherUserId}]]</a>
+    </li>
+</ul>
+<form action="/conversation" method="get">
+    <label for="user">User ID:</label>
+    <input type="number" id="user" name="user">
+    <label for="recipient">Recipient ID:</label>
+    <input type="number" id="recipient" name="recipient">
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

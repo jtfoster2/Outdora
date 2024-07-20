@@ -2,17 +2,12 @@ package com.esep.outdoora.cucumber
 
 import com.esep.outdoora.profile.CucumberIntegrationTest
 import io.cucumber.spring.CucumberContextConfiguration
-import jakarta.annotation.PostConstruct
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
-import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpMethod
 import org.springframework.http.client.ClientHttpResponse
 import org.springframework.web.client.ResponseErrorHandler
 import org.springframework.web.client.RestTemplate
 import java.io.IOException
-
 
 @SpringBootTest(classes = [CucumberIntegrationTest::class])
 @CucumberContextConfiguration
