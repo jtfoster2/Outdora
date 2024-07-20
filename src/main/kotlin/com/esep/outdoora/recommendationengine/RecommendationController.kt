@@ -1,6 +1,7 @@
 package com.esep.outdoora.recommendationengine
 
 import com.esep.outdoora.profile.ProfileRepository
+import com.esep.outdoora.user.User
 import jakarta.servlet.http.HttpSession
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -18,8 +19,8 @@ class RecommendationController(
         model: Model,
         session: HttpSession
     ): String {
-
-        val recommandedProfiles = recommendEngine.basicRecommendProfileTo(44)
+        val userId = session.getAttribute("userId") as Long
+        val recommandedProfiles = recommendEngine.basicRecommendProfileTo(userId)
         model.addAttribute("profiles", recommandedProfiles)
 
         return "profile-recommend"
@@ -30,9 +31,8 @@ class RecommendationController(
         @RequestParam LikedProfileId: Long,
         session: HttpSession
     ): String {
-        val userId = session.getAttribute("user_id") as Long
-
-
-        return "redirect:/recommendations"
+        val user = session.getAttribute("user_id") as User
+        
+        return "/recommendations"
     }
 }

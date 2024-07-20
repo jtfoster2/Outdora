@@ -17,7 +17,6 @@ class RecommendEngine(
     val dataModel: DataModel by lazy { FileDataModel(createDateTempFile()) }
 
     fun basicRecommendProfileTo(userId: Long): List<Profile> {
-        val currentProfile = profileRepository.findByUserId(userId)
         val activityPreference = activityPreferences.findByUserId(userId)
         val profiles = profileRepository.findAll()
         val recommendations = mutableListOf<Profile>()
@@ -35,7 +34,7 @@ class RecommendEngine(
 
         }
 
-        return recommendations
+        return recommendations.take(20)
     }
 
     fun recommendProfilesTo(profile: Profile): List<Profile> {
