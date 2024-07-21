@@ -110,7 +110,7 @@ class ConversationControllerUnitTest {
 
         val conversationController = ConversationController(chatRepository, userRepository, messagingTemplate)
 
-        every { session.getAttribute("userId") } returns 1
+        every { session.getAttribute("userId") } returns 1L
 
         every { model.addAttribute("conversations", emptyList<Unit>()) } returns model
         every { model.addAttribute("userId", 1L) } returns model
@@ -133,7 +133,7 @@ class ConversationControllerUnitTest {
 
         val conversationController = ConversationController(chatRepository, userRepository, messagingTemplate)
 
-        every { session.getAttribute("userId") } returns 1
+        every { session.getAttribute("userId") } returns 1L
 
         every { model.addAttribute("userId", 1L) } returns model
 
