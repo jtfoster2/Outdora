@@ -1,0 +1,4 @@
+
+
+[Pair Programming - Krishna and Koko](https://kennesawedu-my.sharepoint.com/:v:/g/personal/jfost103_students_kennesaw_edu/EUIh1VORHh9FosCoKTRTzJoBlgdY3yTWKzPxLpRF4TNNsg?e=EPmzD2&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
+[Sprint Review Link TBC]()
