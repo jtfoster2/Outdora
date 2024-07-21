@@ -52,7 +52,7 @@ class ConversationController(
         model: Model,
         session: HttpSession,
     ): String {
-        val userId = (session.getAttribute("userId") as Int).toLong()
+        val userId = (session.getAttribute("userId") as Long)
         model.addAttribute(
             "conversations",
             chatRepository.findAll().filter {
