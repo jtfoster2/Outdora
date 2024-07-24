@@ -31,6 +31,28 @@ class SpringIntegrationTest {
         })
     }
 
+    @Throws(IOException::class)
+    fun executePost() {
+        val headers: MutableMap<String, String> = HashMap()
+        headers["Accept"] = "application/json"
+        val requestCallback: HeaderSettingRequestCallback = HeaderSettingRequestCallback(headers)
+        val errorHandler = ResponseResultErrorHandler()
+
+        if (restTemplate == null) {
+            restTemplate = RestTemplate()
+        }
+
+        restTemplate!!.errorHandler = errorHandler
+        latestResponse = restTemplate!!
+            .execute("http://localhost:8080/baeldung", HttpMethod.POST, requestCallback, { response ->
+                if (errorHandler.hadError) {
+                    return@execute (errorHandler.getResults())
+                } else {
+                    return@execute (ResponseResults(response))
+                }
+            })
+    }
+
     private inner class ResponseResultErrorHandler : ResponseErrorHandler {
         private var results: ResponseResults? = null
         var hadError: Boolean = false
