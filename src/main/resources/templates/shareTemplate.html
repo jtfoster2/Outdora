@@ -107,6 +107,23 @@
         .social-item .btn-share:hover {
             background-color: #0056b3;
         }
+
+        .social-item .btn-share2 {
+            background-color: #918f8f;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .social-item .btn-share2:hover {
+            background-color: #8f8f8f;
+        }
     </style>
 </head>
 <body>
@@ -121,17 +138,17 @@
             <div class="social-item">
                 <img src="/facebook-icon.png" alt="Facebook">
                 <div class="social-name">Facebook</div>
-                <a th:href="'https://www.facebook.com/sharer/sharer.php?u=https://outdoora.com&quote=' + ${text} + ' - ' + ${author}" class="btn-share" target="_blank">Share</a>
+                <button class="btn-share2" disabled>Share</button>
             </div>
             <div class="social-item">
                 <img src="/twitter-icon.png" alt="Twitter">
                 <div class="social-name">Twitter</div>
-                <a th:href="'https://twitter.com/intent/tweet?text=' + ${text} + ' - ' + ${author}" class="btn-share" target="_blank">Share</a>
+                <button class="btn-share2" disabled>Share</button>
             </div>
             <div class="social-item">
                 <img src="/linkedin-icon.png" alt="LinkedIn">
                 <div class="social-name">LinkedIn</div>
-                <a th:href="'https://www.linkedin.com/sharing/share-offsite/?url=https://outdoora.com&title=' + ${text} + '&summary=' + ${text} + ' - ' + ${author}" class="btn-share" target="_blank">Share</a>
+                <button class="btn-share2" disabled>Share</button>
             </div>
             <div class="social-item">
                 <img src="/whatsapp-icon.png" alt="WhatsApp">
