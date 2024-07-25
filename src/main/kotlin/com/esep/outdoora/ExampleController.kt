@@ -24,17 +24,7 @@ class ExampleController {
     ): String {
         // See other fields with authDetails endpoint.
         model.addAttribute("name", oauth2User.attributes.get("given_name"))
-        return "home"
-    }
-
-    @GetMapping("/hello")
-    fun hello(model: Model): String {
-        return "hello"
-    }
-
-    @GetMapping("/help")
-    fun help(model: Model): String {
-        return "help"
+        return "intro"
     }
 }
 
