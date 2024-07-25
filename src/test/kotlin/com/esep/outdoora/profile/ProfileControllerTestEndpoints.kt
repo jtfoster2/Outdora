@@ -40,4 +40,31 @@ class ProfileControllerTestEndpoints(
             .andExpect(content().string(containsString("""<p>Your description is: <span>old description</span></p>""")))
             .andExpect(content().string(containsString("""<a href="/editProfile">Edit Profile</a>""")))
     }
+
+    @Test
+    @WithMockUser(username = "user", roles = ["USER"])
+    fun `test showConversation endpoint`() {
+        mockMvc.perform(get("/conversation/1/2")
+            .session(session))
+            .andDo { println(it.response.contentAsString) }
+            .andExpect(status().isOk)
+    }
+
+    @Test
+    @WithMockUser(username = "user", roles = ["USER"])
+    fun `test conversation request params redirect`() {
+        mockMvc.perform(get("/conversation?user=1&recipient=2")
+            .session(session))
+            .andDo { println(it.response.contentAsString) }
+            .andExpect(status().is3xxRedirection)
+    }
+
+    @Test
+    @WithMockUser(username = "user", roles = ["USER"])
+    fun `test showConversationSelector endpoint`() {
+        mockMvc.perform(get("/conversation/selector")
+            .session(session))
+            .andDo { println(it.response.contentAsString) }
+            .andExpect(status().isOk)
+    }
 }
