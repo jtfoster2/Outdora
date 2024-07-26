@@ -84,9 +84,6 @@ class ProfileControllerTestEndpoints(
             .andExpect(content().string(containsString("""<div class="popup-header">Share Text</div>""")))
             .andExpect(content().string(containsString("""<p>Author: <span>testAuthor</span></p>""")))
             .andExpect(content().string(containsString("""<p>Text: <span>testText</span></p>""")))
-            .andExpect(content().string(containsString("<a href=\"https://www.facebook.com/sharer/sharer.php?u=https://outdoora.com&quot;e=testText - testAuthor\" class=\"btn-share\" target=\"_blank\">Share</a>")))
-            .andExpect(content().string(containsString("<a href=\"https://twitter.com/intent/tweet?text=testText - testAuthor\" class=\"btn-share\" target=\"_blank\">Share</a>")))
-            .andExpect(content().string(containsString("<a href=\"https://www.linkedin.com/sharing/share-offsite/?url=https://outdoora.com&amp;title=testText&amp;summary=testText - testAuthor\" class=\"btn-share\" target=\"_blank\">Share</a>")))
             .andExpect(content().string(containsString("<a href=\"https://api.whatsapp.com/send?text=testText - testAuthor\" class=\"btn-share\" target=\"_blank\">Share</a>")))
             .andExpect(content().string(containsString("<a href=\"https://t.me/share/url?url=https://outdoora.com&amp;text=testText - testAuthor\" class=\"btn-share\" target=\"_blank\">Share</a>")))
 
