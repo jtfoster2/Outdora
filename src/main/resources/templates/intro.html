@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 850px;
+            padding: 20px;
+            text-align: center;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            opacity: 0.8;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        header img {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+        }
+        .description {
+            margin: 40px 0;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0.8;
+        }
+        .description h2 {
+            margin-top: 0;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        .description p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #000;
+            padding: 0;
+            margin: 0;
+        }
+        .gallery img {
+            width: calc(50% - 10px);
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .guide {
+            margin: 40px 0;
+            padding: 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0.8;
+        }
+        .guide h3 {
+            margin-top: 0;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        .guide ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+        .guide ul li {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #000;
+            text-align: left;
+            position: relative;
+        }
+        .guide ul li::before {
+            content: '✔';
+            color: #007bff;
+            position: absolute;
+            left: -25px;
+            top: 0;
+        }
+        .footer {
+            margin: 40px 0;
+        }
+        .footer button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .footer button:hover {
+            background-color: #0056b3;
+        }
+        .background-gallery {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .background-gallery img {
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="background-gallery">
+    <img src="/intro_1.png" alt="Photo 1">
+    <img src="/intro_2.png" alt="Photo 2">
+    <img src="./intro_3.png" alt="Photo 3">
+    <img src="/intro_4.png" alt="Photo 4">
+</div>
+<div class="container">
+    <header>
+        <img src="/logo.png" alt="Logo">
+        <h1>Outdora</h1>
+    </header>
+    <div class="description">
+        <p>Welcome to Outdora, a unique dating app designed for outdoor enthusiasts. Whether you enjoy hiking in the forest, kayaking in streams, rock climbing in the mountains, or exploring new trails, Outdora helps you find like-minded adventurers who share your passion for the great outdoors. Our platform goes beyond basic metrics to ensure you find a partner who truly understands your love for adventure.</p>
+    </div>
+    <div class="guide">
+        <ul>
+            <li>Getting started with Outdora is quick and easy — just create a profile and begin your adventure.</li>
+            <li>Upload your best photos and share your journeys with the community.</li>
+            <li>Connect your profile to Instagram and other social networks to showcase your achievements and meet new friends.</li>
+            <li>Outdora helps you find like-minded adventurers by considering your interests, skills, and preferences.</li>
+            <li>Our smart matching algorithm will find you the perfect adventure partners within your chosen radius.</li>
+            <li>Communicate with new friends using built-in messaging, voice, and video calls — plan outings and share experiences in real-time.</li>
+        </ul>
+    </div>
+    <div class="footer">
+        <button onclick="location.href='/home'">Get Started</button>
+    </div>
+</div>
+</body>
+</html>
