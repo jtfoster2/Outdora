@@ -44,7 +44,7 @@ class WebSecurityConfig {
                     .anyRequest().authenticated()
             }
             .oauth2Login { oauth2Login ->
-                oauth2Login.userInfoEndpoint(Customizer {  })
+                oauth2Login.userInfoEndpoint(Customizer { })
                     .successHandler(oAuth2LoginSuccessHandler)
             }
             .logout { logout ->
@@ -52,7 +52,7 @@ class WebSecurityConfig {
                     .logoutSuccessUrl("/logged-out")
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
-                    .logoutSuccessHandler { request, response, authentication ->
+                    .logoutSuccessHandler { _, response, _ ->
                         val logoutUrl = "$googleLogoutUri"
                         response.sendRedirect(logoutUrl)
                     }

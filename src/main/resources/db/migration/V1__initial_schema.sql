@@ -15,6 +15,7 @@ CREATE TABLE "provider_details"
 );
 
 -- Made this separate so that it could be created separately from the user creation.
+
 CREATE TABLE "profile"
 (
     id BIGSERIAL PRIMARY KEY,
@@ -24,6 +25,12 @@ CREATE TABLE "profile"
     description TEXT,
     image BYTEA,
     FOREIGN KEY (user_id) REFERENCES "users" (id)
+);
+
+CREATE TABLE "likes" (
+    profile_id BIGINT NOT NULL,
+    likes BIGINT,
+    FOREIGN KEY (profile_id) REFERENCES "profile"(id)
 );
 
 CREATE TABLE "activity_preferences"

@@ -1,7 +1,7 @@
 package com.esep.outdoora.recommendationengine
 
+import com.esep.outdoora.profile.Profile
 import com.esep.outdoora.profile.ProfileRepository
-import com.esep.outdoora.user.User
 import jakarta.servlet.http.HttpSession
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -27,12 +27,16 @@ class RecommendationController(
     }
 
     @PostMapping("/likeprofile")
-    fun likeProfile(
-        @RequestParam LikedProfileId: Long,
+    fun likeProfileAction(
+        @RequestParam profile_id: Long,
         session: HttpSession
     ): String {
-        val user = session.getAttribute("user_id") as User
-        
-        return "/recommendations"
+        val userId = session.getAttribute("userId") as Long
+        val sessionProfile = profileRepository.findByUserId(userId) as Profile
+        val profile = profileRepository.findById(profile_id).get()
+        profile.likes.add(sessionProfile.id)
+        profileRepository.save(profile)
+
+        return "redirect:/recommendations"
     }
 }

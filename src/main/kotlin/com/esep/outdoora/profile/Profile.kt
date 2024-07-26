@@ -24,10 +24,15 @@ data class Profile(
     @Column
     var image: ByteArray? = null,
 
-    
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User
+    val user: User,
+
+
+    @ElementCollection
+    @CollectionTable(name = "likes", joinColumns = [JoinColumn(name = "profile_id")])
+    val likes: MutableSet<Long?> = mutableSetOf()
 )
 
 interface ProfileRepository : JpaRepository<Profile, Long> {
