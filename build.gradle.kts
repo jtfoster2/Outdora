@@ -62,7 +62,6 @@ dependencies {
     testImplementation("io.cucumber:cucumber-spring:7.14.0")
     testImplementation("io.cucumber:cucumber-junit-platform-engine:7.14.0")
     testImplementation("io.cucumber:cucumber-bom:7.14.0")
-    testRuntimeOnly("org.junit.platform:junit-platform-console-standalone:1.8.2")
 
     // https://mvnrepository.com/artifact/io.kotest/kotest-assertions-core-jvm
     testImplementation("io.kotest:kotest-assertions-core-jvm:5.9.1")
