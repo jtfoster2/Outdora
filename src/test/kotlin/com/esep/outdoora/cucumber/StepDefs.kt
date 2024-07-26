@@ -1,6 +1,7 @@
 package com.esep.outdoora.cucumber
 
 import io.cucumber.java.en.And
+import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import org.hamcrest.MatcherAssert
@@ -35,11 +36,5 @@ class StepDefs : SpringIntegrationTest() {
     @Throws(Throwable::class)
     fun the_client_receives_server_version_body(version: String) {
         MatcherAssert.assertThat(latestResponse!!.body, Matchers.`is`(version))
-    }
-
-    @And("^the client calls /$")
-    @Throws(Throwable::class)
-    fun the_client_visits_the_home_page() {
-        executeGet("http://localhost:8080/home")
     }
 }
