@@ -34,7 +34,7 @@ class TwoFactorController(val twoFactorAutService: TwoFactorAuthenticationServic
         @RequestParam phone: String,
         session: HttpSession
     ): String {
-        twoFactorAutService.sendVerificationCode(phone)
+        //twoFactorAutService.sendVerificationCode(phone)
         session.setAttribute("phoneNumber", phone)
         return "redirect:/code-form"
     }

@@ -1,10 +1,7 @@
 package com.esep.outdoora.profile
 
-import com.esep.outdoora.oauth2.ProviderDetails
 import com.esep.outdoora.user.User
 import jakarta.persistence.*
-import org.hibernate.annotations.Type
-import org.hibernate.type.descriptor.jdbc.BinaryJdbcType
 import org.springframework.data.jpa.repository.JpaRepository
 
 @Entity
@@ -23,14 +20,21 @@ data class Profile(
     @Column
     var description: String? = null,
 
+
     @Column
     var image: ByteArray? = null,
 
-    @OneToOne(fetch = FetchType.LAZY)
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User
+    val user: User,
+
+
+    @ElementCollection
+    @CollectionTable(name = "likes", joinColumns = [JoinColumn(name = "profile_id")])
+    val likes: MutableSet<Long?> = mutableSetOf()
 )
 
-interface ProfileRepository: JpaRepository<Profile, Long> {
+interface ProfileRepository : JpaRepository<Profile, Long> {
     fun findByUserId(userId: Long): Profile?
 }

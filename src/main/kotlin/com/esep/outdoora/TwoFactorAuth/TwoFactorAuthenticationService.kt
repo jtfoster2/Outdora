@@ -11,7 +11,7 @@ class TwoFactorAuthenticationService(@Autowired val smsService: SmsService) {
         return java.lang.String.format("%06d", Random.nextInt(999999))
     }
 
-    fun sendVerificationCode(phoneNumber: String?) {
+    fun sendVerificationCodeBySms(phoneNumber: String?) {
         val code = generateVerificationCode()
         smsService.sendSms(phoneNumber, "Your Outdora verification code is: $code")
 
@@ -20,5 +20,6 @@ class TwoFactorAuthenticationService(@Autowired val smsService: SmsService) {
     fun verifyCode(phoneNumber: String?, inputCode: String, actualCode: String): Boolean {
         return actualCode == inputCode
     }
+
 
 }
