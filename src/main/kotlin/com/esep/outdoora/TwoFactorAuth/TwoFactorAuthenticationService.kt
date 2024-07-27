@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 import kotlin.random.Random
 
 @Service
-class TwoFactorAuthenticationService(@Autowired val smsService: SmsService, @Autowired val emailService: EmailService) {
+class TwoFactorAuthenticationService(@Autowired val smsService: SmsService) {
 
     fun generateVerificationCode(): String {
         return java.lang.String.format("%06d", Random.nextInt(999999))
@@ -15,11 +15,6 @@ class TwoFactorAuthenticationService(@Autowired val smsService: SmsService, @Aut
         val code = generateVerificationCode()
         smsService.sendSms(phoneNumber, "Your Outdora verification code is: $code")
 
-    }
-
-    fun sendVerificationCodeByEmail(email: String) {
-        val code = generateVerificationCode()
-        emailService.sendEmail(email, "Your Outdora verification code is: $code", code)
     }
 
     fun verifyCode(phoneNumber: String?, inputCode: String, actualCode: String): Boolean {
