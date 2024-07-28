@@ -32,13 +32,10 @@ client.connect({}, function(frame) {
     });
 });
 
-// client.onStompError = (frame) => {
-//     console.error('Broker reported error: ' + frame.headers['message']);
-//     console.error('Additional details: ' + frame.body);
-// };
-
 function handleSendMessage() {
     sendMessageWithParams(userId, recipientId, document.getElementById('messageInput').value);
+    document.getElementById('messageInput').value = '';
+    document.getElementById('messageInput').focus();
 }
 
 function sendMessageWithParams(senderId, recipientId, messageContent) {
@@ -50,6 +47,7 @@ function sendMessageWithParams(senderId, recipientId, messageContent) {
 function displayMessage(message) {
     var messageContainer = document.getElementById('messageContainer');
     var messageElement = document.createElement('div');
+    messageElement.classList.add('message');
     if (message.senderId == userId) {
         messageElement.innerText = message.timestamp + " - " + "Me" + ": " + message.content;
     } else {
@@ -57,9 +55,3 @@ function displayMessage(message) {
     }
     messageContainer.appendChild(messageElement);
 }
-
-// export { handleSendMessage };
-// export { displayMessage };
-// Attach handleSendMessage to the window object to make it globally accessible
-// window.handleSendMessage = handleSendMessage;
-// window.displayMessage = displayMessage;
