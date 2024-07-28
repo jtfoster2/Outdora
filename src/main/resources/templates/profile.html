@@ -1,23 +1,263 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
-    <title>Spring Security Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #ecf0f1;
+            --card-background: #ffffff;
+            --text-color: #34495e;
+            --text-secondary: #7f8c8d;
+            --font-size-small: 0.875rem;
+            --font-size-medium: 1rem;
+            --font-size-large: 1.25rem;
+            --font-size-xl: 1.5rem;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+            font-size: var(--font-size-medium);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: var(--font-size-small);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .profile-card {
+            text-align: center;
+        }
+
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px var(--primary-color);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        .profile-name {
+            font-size: var(--font-size-xl);
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .profile-details {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: var(--font-size-small);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 5px 10px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: var(--font-size-small);
+        }
+
+        .button-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .button-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .button-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .button-secondary:hover {
+            background-color: #27ae60;
+        }
+
+        .info-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--background-color);
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: var(--text-secondary);
+        }
+
+        .edit-button {
+            align-self: flex-start;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: var(--font-size-small);
+        }
+
+        .edit-button:hover {
+            background-color: #27ae60;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icon {
+            width: 24px;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Profile</h1>
-<div th:if="${!profileExists}">
-    <p>You don't have a profile yet!</p>
-    <a href="/editProfile">Edit Profile</a>
-</div>
-<div th:if="${profileExists}">
-    <p>Welcome to your profile!</p>
-    <p>Your name is: <span th:text="${name}">Blah</span></p>
-    <p>Your age is: <span th:text="${age}">Blah</span></p>
-    <p>Your description is: <span th:text="${description}">Blah</span></p>
-    <img th:if="${imageBase64}" th:src="'data:image/jpeg;base64,' + ${imageBase64}" alt="Profile Image"/>
-    <a href="/editProfile">Edit Profile</a>
-</div>
-
-<p>Click <a th:href="@{/}">here</a> to main.</p>
+    <div class="container">
+        <div class="breadcrumb">
+            <a th:href="@{/}">Home</a> / User Profile
+        </div>
+        <div th:if="${!profileExists}">
+            <p>You don't have a profile yet!</p>
+            <a class="button button-secondary edit-button" href="/editProfile">Edit Profile</a>
+        </div>
+        <div class="profile-container">
+            <div class="profile-card card">
+                <div class="profile-image-container">
+                    <img th:if="${imageBase64}" th:src="'data:image/jpeg;base64,' + ${imageBase64}" alt="Profile Image"/>
+                </div>
+                <h2 class="profile-name"><span th:text="${name}">Krishna Boddu</span></h2>
+                <h5>Kboddu@students.kennesaw.edu</h5>
+                <p class="profile-details">Age: <span th:text="${age}">21</span><br>Description: <span th:text="${description}">Kennesaw University Student<br>Exploring the outdoors</span></p>
+                <a href="#" class="button button-primary">Follow</a>
+                <a href="messaging/index.html" class="button button-secondary">Message</a>
+            </div>
+            <div class="info-card card">
+                <div class="info-row">
+                    <span class="info-label">Name</span>
+                    <span th:text="${name}">Krishna Boddu</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Age</span>
+                    <span th:text="${age}">21</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Description</span>
+                    <span th:text="${description}">Exploring the outdoors</span>
+                </div>
+                <a class="button button-secondary edit-button" href="/editProfile">Edit Profile</a>
+                <div class="social-links">
+                    <a href="https://github.com/Kringna" class="social-link">
+                        <i class="fas fa-globe social-icon"></i>
+                        <span>https://github.com/Kringna</span>
+                    </a>
+                    <a href="https://github.com/Kringna" class="social-link">
+                        <i class="fab fa-github social-icon"></i>
+                        <span>Kringna</span>
+                    </a>
+                    <a href="https://twitter.com/Kringna" class="social-link">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <span>@Kringna</span>
+                    </a>
+                    <a href="https://instagram.com/Kringna" class="social-link">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span>Kringna</span>
+                    </a>
+                    <a href="https://facebook.com/Kringna" class="social-link">
+                        <i class="fab fa-facebook social-icon"></i>
+                        <span>Kringna</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
