@@ -152,47 +152,29 @@
         <div class="breadcrumb">
             <a th:href="@{/}">Home</a> / Activity Preferences
         </div>
-        <div th:if="${preferencesExists}">
-            <div class="preferences-container">
-                <div class="card">
-                    <h2 class="form-title">Activity Preferences</h2>
-                    <div class="preferences">
-                        <div class="activity">
-                            <p>Skiing - Skill Level: <span th:text="${activity.skiingSkillLevel}">Intermediate</span> and Attitude: <span th:text="${activity.skiingAttitude}">Positive</span></p>
-                        </div>
-                        <div class="activity">
-                            <p>Backpacking - Skill Level: <span th:text="${activity.backpackingSkillLevel}">Advanced</span> and Attitude: <span th:text="${activity.backpackingAttitude}">Adventurous</span></p>
-                        </div>
-                        <div class="activity">
-                            <p>Travel - Skill Level: <span th:text="${activity.travelSkillLevel}">Beginner</span> and Attitude: <span th:text="${activity.travelAttitude}">Curious</span></p>
-                        </div>
-                        <div class="activity">
-                            <p>Hiking - Skill Level: <span th:text="${activity.hikingSkillLevel}">Expert</span> and Attitude: <span th:text="${activity.hikingAttitude}">Enthusiastic</span></p>
-                        </div>
-                        <div class="activity">
-                            <p>Holidate - Skill Level: <span th:text="${activity.holidateSkillLevel}">Novice</span> and Attitude: <span th:text="${activity.holidateAttitude}">Relaxed</span></p>
-                        </div>
-                        <a class="button button-secondary edit-button" href="/editActivityPreferences">Edit Preferences</a>
+        <div class="preferences-container">
+            <div class="card">
+                <h2 class="form-title">Activity Preferences</h2>
+                <div class="preferences">
+                    <div class="activity">
+                        <p>Skiing - Skill Level: <span th:text="${activity.skiingSkillLevel}">Intermediate</span> and Attitude: <span th:text="${activity.skiingAttitude}">Positive</span></p>
                     </div>
+                    <div class="activity">
+                        <p>Backpacking - Skill Level: <span th:text="${activity.backpackingSkillLevel}">Advanced</span> and Attitude: <span th:text="${activity.backpackingAttitude}">Adventurous</span></p>
+                    </div>
+                    <div class="activity">
+                        <p>Travel - Skill Level: <span th:text="${activity.travelSkillLevel}">Beginner</span> and Attitude: <span th:text="${activity.travelAttitude}">Curious</span></p>
+                    </div>
+                    <div class="activity">
+                        <p>Hiking - Skill Level: <span th:text="${activity.hikingSkillLevel}">Expert</span> and Attitude: <span th:text="${activity.hikingAttitude}">Enthusiastic</span></p>
+                    </div>
+                    <div class="activity">
+                        <p>Holidate - Skill Level: <span th:text="${activity.holidateSkillLevel}">Novice</span> and Attitude: <span th:text="${activity.holidateAttitude}">Relaxed</span></p>
+                    </div>
+                    <a class="button button-secondary edit-button" href="/editActivityPreferences">Edit Preferences</a>
                 </div>
             </div>
         </div>
     </div>
-<!-- <h1>Activity Preferences</h1>
-
-    <div th:if="${!preferencesExists}">
-        <p>You don't have any activity preferences yet!</p>
-        <a href="/editActivityPreferences">Edit Activity Preferences</a>
-    </div>
-    <div th:if="${preferencesExists}">
-        <p>These are your current activity preferences:</p>
-        <p>Skiing - Skill Level:<span th:text="${activity.skiingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.skiingAttitude}">Blah</span></p>
-        <p>Backpacking - Skill Level:<span th:text="${activity.backpackingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.backpackingAttitude}">Blah</span></p>
-        <p>Travel - Skill Level:<span th:text="${activity.travelSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.travelAttitude}">Blah</span></p>
-        <p>Hiking - Skill Level:<span th:text="${activity.hikingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.hikingAttitude}">Blah</span></p>
-        <p>Holidate - Skill Level:<span th:text="${activity.holidateSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.holidateAttitude}">Blah</span></p>
-        <a href="/editActivityPreferences">Edit Preferences</a>
-    </div>
-    <p>Click <a th:href="@{/}">here</a> to main.</p> -->
 </body>
 </html>
