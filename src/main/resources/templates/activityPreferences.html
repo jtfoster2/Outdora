@@ -1,17 +1,202 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
-    <title>Spring Security Example</title>
+    <title>Activity Preferences</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Preferences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #ecf0f1;
+            --card-background: #ffffff;
+            --text-color: #34495e;
+            --text-secondary: #7f8c8d;
+            --font-size-small: 0.875rem;
+            --font-size-medium: 1rem;
+            --font-size-large: 1.25rem;
+            --font-size-xl: 1.5rem;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+            font-size: var(--font-size-medium);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: var(--font-size-small);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .preferences-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .form-title {
+            font-size: var(--font-size-xl);
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .checkbox-item {
+            width: calc(33.33% - 20px);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: var(--font-size-medium);
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+
+        .button-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .button-secondary:hover {
+            background-color: #27ae60;
+        }
+     
+        .edit-button {
+            align-self: flex-start;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: var(--font-size-small);
+        }
+
+        .preferences {
+        margin-top: 20px;
+        }
+
+        .activity {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            border-left: 5px solid #007bff;
+            line-height: 1.6;
+        }
+
+        .activity span {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-<!--<div th:if="${profileExists}">-->
-<h1>Preferences</h1>
-<p>These are your current activity preferences:</p>
-<p th:if="${preferences.skiing}">You love to skiing!</p><p th:if="${!preferences.skiing}">You do not like to skiing.</p>
-<p th:if="${preferences.hiking}">You love to hiking!</p><p th:if="${!preferences.hiking}">You do not like to hiking.</p>
-<p th:if="${preferences.backpacking}">You love to backpacking!</p><p th:if="${!preferences.backpacking}">You do not like to backpacking.</p>
-<p th:if="${preferences.travel}">You love to travel!</p><p th:if="${!preferences.travel}">You do not like to travel.</p>
-<p th:if="${preferences.holidate}">You love to holidate!</p><p th:if="${!preferences.holidate}">You do not like to holidate.</p>
-<a href="/editActivityPreferences">Edit Preferences</a>
+    <div class="container">
+        <div class="breadcrumb">
+            <a th:href="@{/}">Home</a> / Activity Preferences
+        </div>
+        <div th:if="${!preferencesExists}">
+            <p>You don't have any activity preferences yet!</p>
+            <a class="button button-secondary edit-button" href="/editActivityPreferences">Edit Activity Preferences</a>
+        </div>
+        <div th:if="${preferencesExists}">
+            <div class="preferences-container">
+                <div class="card">
+                    <h2 class="form-title">Activity Preferences</h2>
+                    <div class="preferences">
+                        <div class="activity">
+                            <p>Skiing - Skill Level: <span th:text="${activity.skiingSkillLevel}">Intermediate</span> and Attitude: <span th:text="${activity.skiingAttitude}">Positive</span></p>
+                        </div>
+                        <div class="activity">
+                            <p>Backpacking - Skill Level: <span th:text="${activity.backpackingSkillLevel}">Advanced</span> and Attitude: <span th:text="${activity.backpackingAttitude}">Adventurous</span></p>
+                        </div>
+                        <div class="activity">
+                            <p>Travel - Skill Level: <span th:text="${activity.travelSkillLevel}">Beginner</span> and Attitude: <span th:text="${activity.travelAttitude}">Curious</span></p>
+                        </div>
+                        <div class="activity">
+                            <p>Hiking - Skill Level: <span th:text="${activity.hikingSkillLevel}">Expert</span> and Attitude: <span th:text="${activity.hikingAttitude}">Enthusiastic</span></p>
+                        </div>
+                        <div class="activity">
+                            <p>Holidate - Skill Level: <span th:text="${activity.holidateSkillLevel}">Novice</span> and Attitude: <span th:text="${activity.holidateAttitude}">Relaxed</span></p>
+                        </div>
+                        <a class="button button-secondary edit-button" href="/editActivityPreferences">Edit Preferences</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- <h1>Activity Preferences</h1>
+
+    <div th:if="${!preferencesExists}">
+        <p>You don't have any activity preferences yet!</p>
+        <a href="/editActivityPreferences">Edit Activity Preferences</a>
+    </div>
+    <div th:if="${preferencesExists}">
+        <p>These are your current activity preferences:</p>
+        <p>Skiing - Skill Level:<span th:text="${activity.skiingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.skiingAttitude}">Blah</span></p>
+        <p>Backpacking - Skill Level:<span th:text="${activity.backpackingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.backpackingAttitude}">Blah</span></p>
+        <p>Travel - Skill Level:<span th:text="${activity.travelSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.travelAttitude}">Blah</span></p>
+        <p>Hiking - Skill Level:<span th:text="${activity.hikingSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.hikingAttitude}">Blah</span></p>
+        <p>Holidate - Skill Level:<span th:text="${activity.holidateSkillLevel}">Blah</span> and Attitude: <span th:text="${activity.holidateAttitude}">Blah</span></p>
+        <a href="/editActivityPreferences">Edit Preferences</a>
+    </div>
+    <p>Click <a th:href="@{/}">here</a> to main.</p> -->
 </body>
 </html>
