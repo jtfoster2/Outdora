@@ -152,10 +152,6 @@
         <div class="breadcrumb">
             <a th:href="@{/}">Home</a> / Activity Preferences
         </div>
-        <div th:if="${!preferencesExists}">
-            <p>You don't have any activity preferences yet!</p>
-            <a class="button button-secondary edit-button" href="/editActivityPreferences">Edit Activity Preferences</a>
-        </div>
         <div th:if="${preferencesExists}">
             <div class="preferences-container">
                 <div class="card">
