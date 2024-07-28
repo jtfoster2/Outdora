@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdora - Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Roboto, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo svg {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            fill: #008dbb;
+        }
+
+        .form-container {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-container h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 0 0 20px;
+            color: #333;
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            margin: 0 0 30px;
+            color: #555;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            color: #333;
+        }
+
+        .form-group input::placeholder {
+            color: #bbb;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            color: #fff;
+            background-color: #008dbb;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #007ba9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        <svg viewBox="0 0 24 24">
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path d="M22 9 12 2 2 9h9v13h2V9z"></path>
+            <path d="m4.14 12-1.96.37.82 4.37V22h2l.02-4H7v4h2v-6H4.9zm14.96 4H15v6h2v-4h1.98l.02 4h2v-5.26l.82-4.37-1.96-.37z"></path>
+        </svg>
+    </div>
+    <div class="form-container">
+        <h1>Outdora</h1>
+        <h2>Sign in</h2>
+        <div class="form-group">
+            <label for="nickname">Nickname</label>
+            <input type="text" id="nickname" placeholder="@name">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="123456">
+        </div>
+        <button class="btn-login">Login</button>
+    </div>
+</div>
+</body>
+</html>
